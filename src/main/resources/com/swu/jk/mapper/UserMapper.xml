@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.swu.jk.mapper.UserMapper">
+	
+	<resultMap type="User" id="UserRM">
+		<id property="id" column="USER_ID"/>
+		<result property="name" column="NAME"/>
+		<result property="password" column="PASSWORD"/>
+		
+		<!-- 虚拟字段 -->
+		<result property="password2" column="PASSWORD2"/>
+		
+	</resultMap>
+
+	<select id="get" parameterType="string" resultMap="UserRM">
+		select * from user_p
+		where user_id=#{pid}
+	</select>
+	
+	
+	<insert id="insert" parameterType="User">
+		insert into user_p
+		(user_id, name, password)
+		values
+		(
+			#{id},
+			#{name, jdbcType=VARCHAR},
+			#{password, jdbcType=VARCHAR},
+		)
+	</insert>
+	
+	<update id="update" parameterType="User">
+		update user_p
+		<set>
+			<if test="name != null">name=#{name},</if>
+			<if test="password != null">password=#{password},</if>
+		</set>
+		where user_id=#{id}
+	</update>
+	
+	
+	<!-- 删除一条 -->
+	<delete id="deleteById" parameterType="string">
+		delete from user_p
+		where user_id=#{pid}
+	</delete>
+	
+	<!-- 删除多条（一维字符串数组） -->
+	<delete id="delete" parameterType="string">
+		delete from user_p
+		where user_id in
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>
+	
+	
+	<!-- login -->
+	<select id="login" parameterType="User" resultMap="UserRM">
+		select * from user_p
+		where name=#{name} and password=#{password}
+	</select>
+	
+</mapper>

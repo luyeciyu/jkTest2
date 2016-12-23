@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.swu.jk.mapper.ExportProductMapper">
+	
+	<resultMap type="com.swu.jk.domain.ExportProduct" id="exportProductRM">
+		<id property="id" column="EXPORT_PRODUCT_ID"/>
+		<result property="factoryId" column="FACTORY_ID"/>
+		<result property="exprotId" column="EXPORT_ID"/>
+		
+		<result property="contractProductId" column="CONTRACT_PRODUCT_ID"/>
+		<result property="contractId" column="CONTRACT_ID"/>
+		<result property="contractNo" column="CONTRACT_NO"/>
+		
+		<result property="productName" column="PRODUCT_NAME"/>
+		<result property="productNo" column="PRODUCT_NO"/>
+		<result property="productImage" column="PRODUCT_IMAGE"/>
+		<result property="productDesc" column="PRODUCT_DESC"/>
+		<result property="loadingRate" column="LOADING_RATE"/>
+		<result property="packingUnit" column="PACKING_UNIT"/>
+		<result property="cnumber" column="CNUMBER"/>
+		<result property="outNumber" column="OUT_NUMBER"/>
+		<result property="finished" column="FINISHED"/>
+		<result property="grossWeight" column="GROSS_WEIGHT"/>
+		<result property="netWeight" column="NET_WEIGHT"/>
+		<result property="sizeLength" column="SIZE_LENGTH"/>
+		<result property="sizeWidth" column="SIZE_WIDTH"/>
+		<result property="sizeHeight" column="SIZE_HEIGHT"/>
+		<result property="productRequest" column="PRODUCT_REQUEST"/>
+		<result property="price" column="PRICE"/>
+		<result property="amount" column="AMOUNT"/>
+		<result property="cunit" column="CUNIT"/>
+		<result property="boxNum" column="BOX_NUM"/>
+		<result property="exPrice" column="EX_PRICE"/>
+		<result property="exUnit" column="EX_UNIT"/>
+		<result property="noTax" column="NO_TAX"/>
+		<result property="tax" column="TAX"/>
+		<result property="costPrice" column="COST_PRICE"/>
+		<result property="costTax" column="COST_TAX"/>
+		<result property="orderNo" column="ORDER_NO"/>
+		<result property="accessories" column="ACCESSORIES"/>
+	</resultMap>
+	
+	<insert id="insert" parameterType="com.swu.jk.domain.ExportProduct">
+		insert into export_product_c
+			(EXPORT_PRODUCT_ID, EXPORT_ID, FACTORY_ID, CONTRACT_PRODUCT_ID, CONTRACT_ID, CONTRACT_NO,
+			PRODUCT_NAME, PRODUCT_NO, PRODUCT_IMAGE, PRODUCT_DESC,
+			LOADING_RATE, PACKING_UNIT, CNUMBER, OUT_NUMBER, FINISHED, GROSS_WEIGHT, NET_WEIGHT, SIZE_LENGTH,
+			SIZE_WIDTH, SIZE_HEIGHT, PRODUCT_REQUEST, PRICE, AMOUNT, CUNIT, BOX_NUM, EX_PRICE, EX_UNIT, NO_TAX,
+			TAX, COST_PRICE, COST_TAX, ORDER_NO, ACCESSORIES)
+		values(
+			#{id},
+			#{exportId},
+			#{factoryId},
+			#{contractProductId},
+			#{contractId},
+			#{contractNo},
+			#{productName},
+			#{productNo},
+			#{productImage},
+			#{productDesc},
+			#{loadingRate},
+			#{packingUnit},
+			#{cnumber},
+			#{outNumber},
+			#{finished},
+			#{grossWeight},
+			#{netWeight},
+			#{sizeLength},
+			#{sizeWidth},
+			#{sizeHeight},
+			#{productRequest},
+			#{price},
+			#{amount},
+			#{cunit},
+			#{boxNum},
+			#{exPrice},
+			#{exUnit},
+			#{noTax},
+			#{tax},
+			#{costPrice},
+			#{costTax},
+			#{orderNo},
+			#{accessories}
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.swu.jk.domain.ExportProduct">
+		update export_product_c
+		<set>
+			<if test=""></if>
+		</set>
+		where export_product_id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		delete from export_product_c
+		where export_product_id in
+		<foreach collection="ids" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<delete id="deleteById" parameterType="String">
+		delete from export_product_c
+		where export_product_id=#{id}
+	</delete>
+	
+	<delete id="deleteByExportId" parameterType="String">
+		delete from export_product_c
+		where exprot_id in
+		<foreach collection="ids" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<select id="get" parameterType="String" resultMap="exportProductRM">
+		select * 
+		from export_product_c
+		where export_product_id=#{id}
+	</select>
+	
+	<select id="find" parameterType="Map" resultMap="exportProductRM">
+		select *
+		from export_product_c
+	</select>
+	
+</mapper>

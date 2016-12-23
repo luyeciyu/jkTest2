@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.swu.jk.mapper.ContractProductMapper">
+	<resultMap type="com.swu.jk.domain.ContractProduct" id="contractProductRM">
+		<id property="id" column="CONTRACT_PRODUCT_ID"/>
+		
+		<result property="contractId" column="CONTRACT_ID"/>
+		<result property="factoryId" column="FACTORY_ID"/>
+		
+		<result property="factoryName" column="FACTORY_NAME"/>
+		<result property="productNo" column="PRODUCT_NO"/>
+		<result property="productImage" column="PRODUCT_IMAGE"/>
+		<result property="productDesc" column="PRODUCT_DESC"/>
+		<result property="cnumber" column="CNUMBER"/>
+		<result property="outNumber" column="OUT_NUMBER"/>
+		<result property="loadingRate" column="LOADING_RATE"/>
+		<result property="boxNum" column="BOX_NUM"/>
+		<result property="packingUnit" column="PACKING_UNIT"/>
+		<result property="price" column="PRICE"/>
+		<result property="amount" column="AMOUNT"/>
+		<result property="finished" column="FINISHED"/>
+		<result property="exts" column="EXTS"/>
+		<result property="orderNo" column="ORDER_NO"/>
+	</resultMap>
+	
+	
+	<!-- 出货表数据 -->
+	<resultMap type="com.swu.jk.vo.ContractProductVO" id="contractProductVORM">
+		<id property="id" column="CONTRACT_PRODUCT_ID"/>
+		<result property="productNo" column="PRODUCT_NO"/>
+		
+		<association property="factory" column="FACTORY_ID" select="findFactoryById"></association>
+		<association property="contract" column="CONTRACT_ID" select="findContractById"></association>
+		<collection property="extCproducts" column="CONTRACT_PRODUCT_ID" select="findExtCproductsByIds"></collection>
+	</resultMap>
+	<resultMap type="com.swu.jk.domain.Factory" id="factoryRM">
+		<id property="id" column="FACTORY_ID"/>
+		<result property="fullName" column="FULL_NAME"/>
+		<result property="factoryName" column="FACTORY_NAME"/>
+	</resultMap>
+	<resultMap type="com.swu.jk.domain.Contract" id="contractRM">
+		<id property="id" column="CONTRACT_ID"/>
+		<result property="contractNo" column="CONTRACT_NO"/>
+		<result property="customName" column="CUSTOM_NAME"/>
+		<result property="shipTime" column="SHIP_TIME"/>
+		<result property="tradeTerms" column="TRADE_TERMS"/>
+		<result property="deliveryPeriod" column="DELIVERY_PERIOD"/>
+	</resultMap>
+	<resultMap type="com.swu.jk.domain.ExtCproduct" id="extCproductRM">
+		<id property="id" column="EXT_CPRODUCT_ID"/>
+		<result property="productName" column="PRODUCT_NAME"/>
+		<result property="productNo" column="PRODUCT_NO"/>
+	</resultMap>
+	
+	<select id="findFactoryById" parameterType="String" resultMap="factoryRM">
+		select FACTORY_ID,FULL_NAME,FACTORY_NAME
+		from factory_c
+		where factory_id=#{id}
+	</select>
+	<select id="findContractById" parameterType="String" resultMap="contractRM">
+		select CONTRACT_NO,CONTRACT_ID,CUSTOM_NAME,SHIP_TIME,TRADE_TERMS,DELIVERY_PERIOD
+		from contract_c
+		where contract_id=#{id}
+	</select>
+	<select id="findExtCproductsByIds" parameterType="String" resultMap="extCproductRM">
+		select EXT_CPRODUCT_ID,PRODUCT_NAME,PRODUCT_NO
+		from ext_cproduct_c
+		where contract_product_id=#{id}
+	</select>
+	
+	<select id="findOutProductData" parameterType="String" resultMap="contractProductVORM">
+		select * 
+		from contract_product_c
+		where contract_id in(
+			select contract_id 
+			from contract_c
+			where to_char(ship_time, 'yyyy-MM')=#{date}
+		)
+	</select>
+	<!-- 出货表数据 -->
+	
+	
+	
+	
+	<insert id="insert" parameterType="com.swu.jk.domain.ContractProduct">
+		insert into contract_product_c
+		(CONTRACT_PRODUCT_ID,CONTRACT_ID,FACTORY_ID,FACTORY_NAME,PRODUCT_NO,
+			PRODUCT_IMAGE,PRODUCT_DESC,CNUMBER,OUT_NUMBER,LOADING_RATE,BOX_NUM,
+			PACKING_UNIT,PRICE,AMOUNT,FINISHED,EXTS,ORDER_NO)
+		values(
+			#{id},
+			#{contractId},
+			#{factoryId},
+			#{factoryName, jdbcType=VARCHAR},
+			#{productNo, jdbcType=VARCHAR},
+			#{productImage, jdbcType=VARCHAR},
+			#{productDesc, jdbcType=VARCHAR},
+			#{cnumber, jdbcType=INTEGER},
+			#{outNumber, jdbcType=INTEGER},
+			#{loadingRate, jdbcType=VARCHAR},
+			#{boxNum, jdbcType=INTEGER},
+			#{packingUnit, jdbcType=VARCHAR},
+			#{price, jdbcType=DOUBLE},
+			#{amount, jdbcType=DOUBLE},
+			#{finished, jdbcType=INTEGER},
+			#{exts, jdbcType=VARCHAR},
+			#{orderNo, jdbcType=INTEGER}
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.swu.jk.domain.ContractProduct">
+		update contract_product_c
+		<set>
+			CONTRACT_ID=#{contractId},
+			FACTORY_ID=#{factoryId},
+			<if test="factoryName != null">FACTORY_NAME=#{factoryName},</if>
+			<if test="productNo != null">PRODUCT_NO=#{productNo},</if>
+			<if test="productImage != null">PRODUCT_IMAGE=#{productImage},</if>
+			<if test="productDesc != null">PRODUCT_DESC=#{productDesc},</if>
+			<if test="cnumber != null">CNUMBER=#{cnumber},</if>
+			<if test="outNumber != null">OUT_NUMBER=#{outNumber},</if>
+			<if test="loadingRate != null">LOADING_RATE=#{loadingRate},</if>
+			<if test="boxNum != null">BOX_NUM=#{boxNum},</if>
+			<if test="packingUnit != null">PACKING_UNIT=#{packingUnit},</if>
+			<if test="price != null">PRICE=#{price},</if>
+			<if test="amount != null">AMOUNT=#{amount},</if>
+			<if test="finished != null">FINISHED=#{finished},</if>
+			<if test="exts != null">EXTS=#{exts},</if>
+			<if test="orderNo != null">ORDER_NO=#{orderNo},</if>
+		</set>
+		where contract_product_id=#{id}
+	</update>
+	
+	<!-- 删除多条（一维字符串数组） -->
+	<delete id="delete" parameterType="String">
+		delete from contract_product_c
+		where contract_product_id in
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<delete id="deleteById" parameterType="String">
+		delete from contract_product_c
+		where contract_product_id=#{id}
+	</delete>
+	
+	
+	<select id="get" parameterType="String" resultMap="contractProductRM">
+		select * from contract_product_c where contract_product_id=#{id}
+	</select>
+	
+	<select id="find" parameterType="Map" resultMap="contractProductRM">
+		select * from contract_product_c
+		where 1=1
+		<if test="conractId != null">and contract_id=#{conractId}</if>
+	</select>
+	
+	
+	<!-- 级联删除， 删除某个合同下的附件 -->
+	<delete id="deleteByContractId" parameterType="String">
+		delete from contract_product_c
+		where CONTRACT_ID in(	
+			<foreach collection="array" item="id" open="(" close=")" separator=",">
+				#{id}
+			</foreach>
+		)
+		
+	</delete>
+	
+</mapper>
