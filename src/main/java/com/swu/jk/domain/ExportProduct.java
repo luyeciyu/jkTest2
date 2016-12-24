@@ -6,7 +6,7 @@ public class ExportProduct {
 	
 	private String id;
 	
-	private String exprotId;
+	private String exportId;
 	private String factoryId;
 	
 	private String contractProductId;
@@ -47,11 +47,12 @@ public class ExportProduct {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getExprotId() {
-		return exprotId;
+	
+	public String getExportId() {
+		return exportId;
 	}
-	public void setExprotId(String exprotId) {
-		this.exprotId = exprotId;
+	public void setExportId(String exportId) {
+		this.exportId = exportId;
 	}
 	public String getFactoryId() {
 		return factoryId;

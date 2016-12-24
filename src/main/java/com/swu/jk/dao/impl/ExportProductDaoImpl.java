@@ -21,7 +21,11 @@ public class ExportProductDaoImpl extends BaseDaoImpl<ExportProduct> implements 
 	@Override
 	public List<ExportProduct> findByExportId(Serializable[] ids) {
 		List<ExportProduct> liExportProducts = super.getSqlSession().selectList(super.getNs() + ".findByExportId", ids);
-		return null;
+		return liExportProducts;
+	}
+	@Override
+	public void insertBatch(List<ExportProduct> exportProducts) {
+		super.getSqlSession().insert(super.getNs() + ".insertBatch", exportProducts);
 	}
 	
 }

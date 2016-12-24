@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.swu.jk.domain.Export;
 import com.swu.jk.service.ExportService;
+import com.swu.jk.util.UtilFuns;
 
 @Controller
 @RequestMapping("/cargo/export")
@@ -21,7 +22,14 @@ public class ExportController {
 	@RequestMapping("/contractsave.action")
 	public String contractsave(String id, Model model){
 		
-		System.out.println(id);
+		if(id != null){
+			String[] contractIds = UtilFuns.splitStr(id, ",");
+			exportService.saveContractToExport(contractIds);
+			System.out.println(id);
+		}
+		
+		
+		
 		return "redirect:/cargo/contract/list.action";
 	}
 }

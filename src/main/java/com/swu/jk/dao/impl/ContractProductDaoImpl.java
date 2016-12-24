@@ -27,4 +27,10 @@ public class ContractProductDaoImpl extends BaseDaoImpl<ContractProduct> impleme
 		
 		return contractProductVOs;
 	}
+
+	@Override
+	public List<ContractProduct> findContractProductByContractId(Serializable[] ids) {
+		List<ContractProduct> contractProductVOs = super.getSqlSession().selectList(super.getNs() + ".findContractProductByContractId", ids);
+		return contractProductVOs;
+	}
 }

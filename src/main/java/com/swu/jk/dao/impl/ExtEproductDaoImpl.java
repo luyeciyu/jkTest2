@@ -1,6 +1,7 @@
 package com.swu.jk.dao.impl;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -21,6 +22,10 @@ public class ExtEproductDaoImpl extends BaseDaoImpl<ExtEproduct> implements ExtE
 	@Override
 	public void deleteByExportId(Serializable[] ids) {
 		super.getSqlSession().delete(super.getNs() + ".deleteByExportId", ids);
+	}
+	@Override
+	public void insertBatch(List<ExtEproduct> eproducts) {
+		super.getSqlSession().insert(super.getNs() + ".insertBatch", eproducts);
 	}
 	
 }

@@ -158,6 +158,15 @@
 		<if test="conractId != null">and contract_id=#{conractId}</if>
 	</select>
 	
+	<select id="findContractProductByContractId" parameterType="String" resultMap="contractProductRM">
+		select * 
+		from contract_product_c
+		where contract_id in
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</select>
+	
 	
 	<!-- 级联删除， 删除某个合同下的附件 -->
 	<delete id="deleteByContractId" parameterType="String">

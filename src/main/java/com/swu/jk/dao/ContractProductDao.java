@@ -9,4 +9,5 @@ import com.swu.jk.vo.ContractProductVO;
 public interface ContractProductDao extends BaseDao<ContractProduct>{
 	public void deleteByContractId(Serializable[] ids);
 	public List<ContractProductVO> findOutProductData(String date);
+	public List<ContractProduct> findContractProductByContractId(Serializable[] ids);
 }

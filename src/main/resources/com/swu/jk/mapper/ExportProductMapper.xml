@@ -7,7 +7,7 @@
 	<resultMap type="com.swu.jk.domain.ExportProduct" id="exportProductRM">
 		<id property="id" column="EXPORT_PRODUCT_ID"/>
 		<result property="factoryId" column="FACTORY_ID"/>
-		<result property="exprotId" column="EXPORT_ID"/>
+		<result property="exportId" column="EXPORT_ID"/>
 		
 		<result property="contractProductId" column="CONTRACT_PRODUCT_ID"/>
 		<result property="contractId" column="CONTRACT_ID"/>
@@ -55,34 +55,34 @@
 			#{factoryId},
 			#{contractProductId},
 			#{contractId},
-			#{contractNo},
-			#{productName},
-			#{productNo},
-			#{productImage},
-			#{productDesc},
-			#{loadingRate},
-			#{packingUnit},
-			#{cnumber},
-			#{outNumber},
-			#{finished},
-			#{grossWeight},
-			#{netWeight},
-			#{sizeLength},
-			#{sizeWidth},
-			#{sizeHeight},
-			#{productRequest},
-			#{price},
-			#{amount},
-			#{cunit},
-			#{boxNum},
-			#{exPrice},
-			#{exUnit},
-			#{noTax},
-			#{tax},
-			#{costPrice},
-			#{costTax},
-			#{orderNo},
-			#{accessories}
+			#{contractNo,jdbcType=VARCHAR},
+			#{productName,jdbcType=VARCHAR},
+			#{productNo,jdbcType=VARCHAR},
+			#{productImage,jdbcType=VARCHAR},
+			#{ productDesc,jdbcType=VARCHAR},
+			#{loadingRate,jdbcType=VARCHAR},
+			#{packingUnit,jdbcType=VARCHAR},
+			#{cnumber,jdbcType=INTEGER},
+			#{outNumber,jdbcType=INTEGER},
+			#{finished,jdbcType=INTEGER},
+			#{grossWeight,jdbcType=DOUBLE},
+			#{netWeight,jdbcType=DOUBLE},
+			#{sizeLength,jdbcType=DOUBLE},
+			#{sizeWidth,jdbcType=DOUBLE},
+			#{sizeHeight,jdbcType=DOUBLE},
+			#{productRequest,jdbcType=VARCHAR},
+			#{price,jdbcType=DOUBLE},
+			#{amount,jdbcType=DOUBLE},
+			#{cunit,jdbcType=VARCHAR},
+			#{boxNum,jdbcType=INTEGER},
+			#{exPrice,jdbcType=DOUBLE},
+			#{exUnit,jdbcType=VARCHAR},
+			#{noTax,jdbcType=DOUBLE},
+			#{tax,jdbcType=DOUBLE},
+			#{costPrice,jdbcType=DOUBLE},
+			#{costTax,jdbcType=DOUBLE},
+			#{orderNo,jdbcType=INTEGER},
+			#{accessories,jdbcType=INTEGER}
 		)
 	</insert>
 	
@@ -125,5 +125,56 @@
 		select *
 		from export_product_c
 	</select>
+	
+	<insert id="insertBatch" parameterType="List">
+		insert into export_product_c
+			(EXPORT_PRODUCT_ID, EXPORT_ID, FACTORY_ID, CONTRACT_PRODUCT_ID, CONTRACT_ID, CONTRACT_NO,
+			PRODUCT_NAME, PRODUCT_NO, PRODUCT_IMAGE, PRODUCT_DESC,
+			LOADING_RATE, PACKING_UNIT, CNUMBER, OUT_NUMBER, FINISHED, GROSS_WEIGHT, NET_WEIGHT, SIZE_LENGTH,
+			SIZE_WIDTH, SIZE_HEIGHT, PRODUCT_REQUEST, PRICE, AMOUNT, CUNIT, BOX_NUM, EX_PRICE, EX_UNIT, NO_TAX,
+			TAX, COST_PRICE, COST_TAX, ORDER_NO, ACCESSORIES)
+	
+		<foreach collection="list" item="item" index="index" separator="union all" >  
+			(
+			select 
+        	#{item.id},
+			#{item.exportId},
+			#{item.factoryId},
+			#{item.contractProductId},
+			#{item.contractId},
+			#{item.contractNo,jdbcType=VARCHAR},
+			#{item.productName,jdbcType=VARCHAR},
+			#{item.productNo,jdbcType=VARCHAR},
+			#{item.productImage,jdbcType=VARCHAR},
+			#{item.productDesc,jdbcType=VARCHAR},
+			#{item.loadingRate,jdbcType=VARCHAR},
+			#{item.packingUnit,jdbcType=VARCHAR},
+			#{item.cnumber,jdbcType=INTEGER},
+			#{item.outNumber,jdbcType=INTEGER},
+			#{item.finished,jdbcType=INTEGER},
+			#{item.grossWeight,jdbcType=DOUBLE},
+			#{item.netWeight,jdbcType=DOUBLE},
+			#{item.sizeLength,jdbcType=DOUBLE},
+			#{item.sizeWidth,jdbcType=DOUBLE},
+			#{item.sizeHeight,jdbcType=DOUBLE},
+			#{item.productRequest,jdbcType=VARCHAR},
+			#{item.price,jdbcType=DOUBLE},
+			#{item.amount,jdbcType=DOUBLE},
+			#{item.cunit,jdbcType=VARCHAR},
+			#{item.boxNum,jdbcType=INTEGER},
+			#{item.exPrice,jdbcType=DOUBLE},
+			#{item.exUnit,jdbcType=VARCHAR},
+			#{item.noTax,jdbcType=DOUBLE},
+			#{item.tax,jdbcType=DOUBLE},
+			#{item.costPrice,jdbcType=DOUBLE},
+			#{item.costTax,jdbcType=DOUBLE},
+			#{item.orderNo,jdbcType=INTEGER},
+			#{item.accessories,jdbcType=INTEGER}
+			from dual
+			)
+    	</foreach>
+			
+		
+	</insert>
 	
 </mapper>
