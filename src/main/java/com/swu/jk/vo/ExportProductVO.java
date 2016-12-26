@@ -255,6 +255,13 @@ public class ExportProductVO {
 	public void setExtEproducts(List<ExtEproduct> extEproducts) {
 		this.extEproducts = extEproducts;
 	}
+	/*public List<ExtEproductVO> getExtEproducts() {
+		return extEproducts;
+	}
+	public void setExtEproducts(List<ExtEproductVO> extEproducts) {
+		this.extEproducts = extEproducts;
+	}*/
+	
 	
 	
 	

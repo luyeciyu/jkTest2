@@ -12,6 +12,9 @@ public class Export {
 	private String consignee; 
 	private String lcno;
 	
+	//虚拟字段
+	private String epnum;
+	private String extnum;
 	
 	private String marks;
 	private String shipmentPort;
@@ -218,6 +221,18 @@ public class Export {
 	}
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
+	}
+	public String getEpnum() {
+		return epnum;
+	}
+	public void setEpnum(String epnum) {
+		this.epnum = epnum;
+	}
+	public String getExtnum() {
+		return extnum;
+	}
+	public void setExtnum(String extnum) {
+		this.extnum = extnum;
 	}
 	
 	

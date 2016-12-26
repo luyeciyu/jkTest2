@@ -16,6 +16,6 @@ public interface ExportService {
 	public void deleteById(Serializable id);
 	public void delete(Serializable[] ids);
 	public void insert(Export export);
-	public List<ExportVO> view(String id);
+	public ExportVO view(String id);
 	public void saveContractToExport(String[] ids);   
 }

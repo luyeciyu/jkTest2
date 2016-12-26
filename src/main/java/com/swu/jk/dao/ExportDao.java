@@ -6,5 +6,5 @@ import com.swu.jk.domain.Export;
 import com.swu.jk.vo.ExportVO;
 
 public interface ExportDao extends BaseDao<Export>{
-	public List<ExportVO> view(String id);
+	public ExportVO view(String id);
 }

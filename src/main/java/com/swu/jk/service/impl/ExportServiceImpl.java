@@ -12,11 +12,13 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.swu.jk.dao.ContractDao;
 import com.swu.jk.dao.ContractProductDao;
 import com.swu.jk.dao.ExportDao;
 import com.swu.jk.dao.ExportProductDao;
 import com.swu.jk.dao.ExtCproductDao;
 import com.swu.jk.dao.ExtEproductDao;
+import com.swu.jk.domain.Contract;
 import com.swu.jk.domain.ContractProduct;
 import com.swu.jk.domain.Export;
 import com.swu.jk.domain.ExportProduct;
@@ -38,7 +40,10 @@ public class ExportServiceImpl implements ExportService{
 	private ExtEproductDao extEproductDao;
 	@Resource
 	private ContractProductDao contractProductDao;
-	@Resource ExtCproductDao extCproductDao;
+	@Resource 
+	private ExtCproductDao extCproductDao;
+	@Resource 
+	private ContractDao contractDao;
 	
 	@Override
 	public List<Export> findPage(Page page) {
@@ -82,9 +87,9 @@ public class ExportServiceImpl implements ExportService{
 	}
 
 	@Override
-	public List<ExportVO> view(String id) {
-		List<ExportVO> exportVOs = exportDao.view(id);
-		return exportVOs;
+	public ExportVO view(String id) {
+		ExportVO exportVO = exportDao.view(id);
+		return exportVO;
 	}
 
 	@Override
@@ -101,6 +106,7 @@ public class ExportServiceImpl implements ExportService{
 		ExportProduct exportProduct = null;
 		ExtEproduct eproduct = null;
 		ContractProduct contractProduct = null;
+		Contract contract = null;
 		ExtCproduct extCproduct = null;
 		
 		String contractIds = "";
@@ -114,10 +120,15 @@ public class ExportServiceImpl implements ExportService{
 				exportProduct = new ExportProduct();
 				contractProduct = iterator.next();
 				
+				contract = contractDao.get(contractProduct.getContractId());
+				
 				if(contractIds.indexOf(contractProduct.getContractId()) == -1){    //排除已经在串中的
-					contractIds += contractProduct.getContractId();                //拼接合同ID
+					contractIds += contractProduct.getContractId() + ",";                //拼接合同ID
 				}
-				//拼接合同或确认书号 ????
+				//拼接合同或确认号 
+				if(customerContracts.indexOf(contract.getContractNo()) == -1){
+					customerContracts += contract.getContractNo() + ",";
+				}
 				
 				exportProduct.setExportId(export.getId());
 				exportProduct.setId(UUID.randomUUID().toString());

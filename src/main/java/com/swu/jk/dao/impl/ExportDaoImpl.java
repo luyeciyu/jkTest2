@@ -15,8 +15,8 @@ public class ExportDaoImpl extends BaseDaoImpl<Export> implements ExportDao{
 	}
 
 	@Override
-	public List<ExportVO> view(String id) {
-		List<ExportVO> exportVOs = super.getSqlSession().selectList(super.getNs() + ".view", id);
-		return exportVOs;
+	public ExportVO view(String id) {
+		ExportVO exportVO = super.getSqlSession().selectOne(super.getNs() + ".view", id);
+		return exportVO;
 	}
 }

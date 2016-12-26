@@ -1,5 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-
+<%@ include file="../../baselist.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!-- 告诉浏览器本网页符合XHTML1.0过渡型DOCTYPE -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -23,13 +24,13 @@
 <div id="innerMenubar">
     <div id="navMenubar">
 <ul>
-<li id="view"><a href="#" onclick="formSubmit('/export/exportAction_toview','_self');this.blur();">查看</a></li>
-<li id="update"><a href="#" onclick="formSubmit('/export/exportAction_toupdate','_self');this.blur();">修改</a></li>
-<li id="delete"><a href="#" onclick="formSubmit('/export/exportAction_delete','_self');this.blur();">删除</a></li>
-<li id="new"><a href="#" onclick="formSubmit('/export/exportAction_submit','_self');this.blur();">上报</a></li>
-<li id="delete"><a href="#" onclick="formSubmit('/export/exportAction_cancelsubmit','_self');this.blur();">取消</a></li>
-<li id="print"><a href="#" onclick="formSubmit('/export/exportAction_print','_self');this.blur();">打印</a></li>
-<li id="new"><a href="#" onclick="formSubmit('/packinglist/packingListAction_tocreate','_self');this.blur();">装箱</a></li>
+<li id="view"><a href="#" onclick="formSubmit('${ctx}/cargo/export/toview.action','_self');this.blur();">查看</a></li>
+<li id="update"><a href="#" onclick="formSubmit('${ctx}/cargo/export/exportAction_toupdate','_self');this.blur();">修改</a></li>
+<li id="delete"><a href="#" onclick="formSubmit('${ctx}/cargo/export/exportAction_delete','_self');this.blur();">删除</a></li>
+<li id="new"><a href="#" onclick="formSubmit('/${ctx}/cargo/export/exportAction_submit','_self');this.blur();">上报</a></li>
+<li id="delete"><a href="#" onclick="formSubmit('${ctx}/cargo/export/exportAction_cancelsubmit','_self');this.blur();">取消</a></li>
+<li id="print"><a href="#" onclick="formSubmit('${ctx}/export/exportAction_print','_self');this.blur();">打印</a></li>
+<li id="new"><a href="#" onclick="formSubmit('${ctx}/packinglist/packingListAction_tocreate','_self');this.blur();">装箱</a></li>
 </ul>
     </div>
 </div>
@@ -71,7 +72,6 @@ ${comboContentStr}
 </div>
 </span>
  
-    
 <div>
 	
 <div class="eXtremeTable" >
@@ -92,7 +92,38 @@ ${comboContentStr}
 	</thead>
 	<tbody class="tableBody" >
 	
-	<s:iterator value="#dataList" var="cp">
+	<c:forEach var="cp" items="${dataList}">
+		<tr class="odd"  onmouseover="this.className='highlight'"  onmouseout="this.className='odd'" >
+		<td><input type="checkbox" name="id" value="${cp.id}"/></td>
+		<td>${cp.customerContract}</td>
+		<td>${cp.epnum}/${cp.extnum}</td>
+		<td>${cp.lcno}</td>
+		<td>${cp.shipmentPort}</td>
+		<td>${cp.consignee}</td>
+		<td>${cp.transportMode}</td>
+		<td>${cp.priceCondition}</td>
+		<td><fmt:formatDate value="${o.inputeDate}" pattern="yyyy-MM-dd"/></td>
+		<td>
+			<%-- <c:if test="${o.state==1}"><font color="green">已上报</font></c:if>
+			<c:if test="${o.state==0}">草稿</c:if> --%>
+			
+			<c:if test="${cp.state==0}">草稿</c:if>
+			<c:if test="${cp.state==1}"><font color="green">已上报</font></c:if>
+			<c:if test="${cp.state==2}"><font color="blue">装箱</font></c:if>
+			<c:if test="${cp.state==3}"><font color="blue">委托</font></c:if>
+			<c:if test="${cp.state==4}"><font color="blue">发票</font></c:if>
+			<c:if test="${cp.state==5}"><font color="brown">财务</font></c:if>
+			
+			<!-- <s:if test="state==0">草稿</s:if>
+			<s:elseif test="state==1"><font color="green">已上报</font></s:elseif>
+			<s:elseif test="state==2"><font color="blue">装箱</font></s:elseif>
+			<s:elseif test="state==3"><font color="blue">委托</font></s:elseif>
+			<s:elseif test="state==4"><font color="blue">发票</font></s:elseif>
+			<s:elseif test="state==5"><font color="brown">财务</font></s:elseif> -->
+		</td>	
+	</tr>
+	</c:forEach>
+	<%-- <s:iterator value="#dataList" var="cp">
 	<tr class="odd"  onmouseover="this.className='highlight'"  onmouseout="this.className='odd'" >
 		<td><input type="checkbox" name="id" value="${id}"/></td>
 		<td><a href="exportAction_toview?id=${id}">${customerContract}</a></td>
@@ -112,7 +143,7 @@ ${comboContentStr}
 			<s:elseif test="state==5"><font color="brown">财务</font></s:elseif>
 		</td>	
 	</tr>
-	</s:iterator>
+	</s:iterator> --%>
 	
 	</tbody>
 </table>

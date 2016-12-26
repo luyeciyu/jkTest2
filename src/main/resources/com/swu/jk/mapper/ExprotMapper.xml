@@ -8,6 +8,10 @@
 		<id property="id" column="EXPORT_ID"/>
 		<result property="contractIds" column="CONTRACT_IDS"/>
 		<result property="customerContract" column="CUSTOMER_CONTRACT"/>
+		
+		<result property="epnum" column="EPNUM"/>
+		<result property="extnum" column="EXTNUM"/>
+		
 		<result property="inputDate" column="INPUT_DATE"/>
 		<result property="consignee" column="CONSIGNEE"/>
 		<result property="lcno" column="LCNO"/>
@@ -36,6 +40,63 @@
 		<result property="createDept" column="CREATE_DEPT"/>
 		<result property="createTime" column="CREATE_TIME"/>
 	</resultMap>
+	
+	
+	<resultMap type="com.swu.jk.vo.ExportVO" id="exportVORM" extends="exportRM">
+		<collection property="exportProducts" ofType="com.swu.jk.vo.ExportProductVO">
+			<id property="id" column="EXPORT_PRODUCT_ID"/>
+			<result property="productNo" column="PRODUCT_NO"/>
+			<result property="productImage" column="PRODUCT_IMAGE"/>
+			<result property="productDesc" column="PRODUCT_DESC"/>
+			<result property="cnumber" column="CNUMBER"/>
+			<result property="outNumber" column="OUT_NUMBER"/>
+			<result property="loadingRate" column="LOADING_RATE"/>
+			<result property="boxNum" column="BOX_NUM"/>
+			<result property="packingUnit" column="PACKING_UNIT"/>
+			<result property="price" column="PRICE"/>
+			<result property="amount" column="AMOUNT"/>
+			<result property="finished" column="FINISHED"/>
+			<result property="exts" column="EXTS"/>
+			<result property="orderNo" column="ORDER_NO"/>
+		
+			<association property="factory" javaType="com.swu.jk.domain.Factory">
+				<id property="id" column="FACTORY_ID"/>
+				<result property="fullName" column="FULL_NAME"/>
+				<result property="factoryName" column="FACTORY_NAME"/>
+				<result property="contacts" column="CONTACTS"/>
+			</association>
+			
+			<collection property="extEproducts" ofType="com.swu.jk.vo.ExtEproductVO">
+				<id property="id" column="EXT_EPRODUCT_ID"/>
+				<result property="ctype" column="CTYPE"/>
+				<result property="productNo" column="EXT_PRODUCT_NO"/>
+				<result property="productImage" column="EXT_PRODUCT_IMAGE"/>
+				<result property="productDesc" column="EXT_PRODUCT_DESC"/>
+				<result property="cnumber" column="EXT_CNUMBER"/>
+				<result property="packingUnit" column="EXT_PACKING_UNIT"/>
+				<result property="price" column="EXT_PRICE"/>
+				<result property="amount" column="EXT_AMOUNT"/>
+				<result property="productRequest" column="PRODUCT_REQUEST"/>
+				<result property="orderNo" column="EXT_ORDER_NO"/>
+				
+				<association property="factory" javaType="com.swu.jk.domain.Factory">
+					<id property="id" column="FACTORY_ID"/>
+					<result property="fullName" column="FULL_NAME"/>
+					<result property="factoryName" column="FACTORY_NAME"/>
+					<result property="contacts" column="CONTACTS"/>
+				</association>
+			</collection>
+		</collection>
+	</resultMap>
+	
+	<select id="view" parameterType="String" resultMap="exportVORM">
+		select * 
+		from export_c e 
+		left join export_product_c ep on ep.export_id=e.export_id
+		left join ext_eproduct_c ext on ep.export_product_id=ext.export_product_id
+		where e.export_id=#{id}
+	</select>
+	
 	
 	<insert id="insert" parameterType="com.swu.jk.domain.Export">
 		insert into export_c
@@ -105,8 +166,14 @@
 	</select>
 	
 	<select id="find" parameterType="Map" resultMap="exportRM">
-		select * 
-		from export_c
+		select 
+			(select count(*) from export_product_c where export_id=e.export_id) as epnum,
+			(select count(*) from ext_eproduct_c where export_product_id in 
+				(select export_product_id from export_product_c where export_id=e.export_id)
+			) as extnum,
+			EXPORT_ID, CUSTOMER_CONTRACT, LCNO, INPUT_DATE, SHIPMENT_PORT, TRANSPORT_MODE,
+			PRICE_CONDITION, CONSIGNEE, STATE
+		from export_c e
 	</select>
 	
 </mapper>
