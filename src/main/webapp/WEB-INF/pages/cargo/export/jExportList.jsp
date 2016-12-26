@@ -9,11 +9,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title></title>
-	<link rel="stylesheet" rev="stylesheet" type="text/css" href="../../skin/default/css/default.css" media="all" />
+	<!-- <link rel="stylesheet" rev="stylesheet" type="text/css" href="../../skin/default/css/default.css" media="all" />
 	
  	<link rel="stylesheet" rev="stylesheet" type="text/css" href="../../css/extreme/extremecomponents.css" />
-    <link rel="stylesheet" rev="stylesheet" type="text/css" href="../../css/extreme/extremesite.css" />
-	<script type="text/javascript" src="../../js/common.js"></script>
+    <link rel="stylesheet" rev="stylesheet" type="text/css" href="../../css/extreme/extremesite.css" /> -->
+	<!-- <script type="text/javascript" src="../../js/common.js"></script> -->
 </head>
  
 <body>
@@ -26,7 +26,7 @@
 <ul>
 <li id="view"><a href="#" onclick="formSubmit('${ctx}/cargo/export/toview.action','_self');this.blur();">查看</a></li>
 <li id="update"><a href="#" onclick="formSubmit('${ctx}/cargo/export/exportAction_toupdate','_self');this.blur();">修改</a></li>
-<li id="delete"><a href="#" onclick="formSubmit('${ctx}/cargo/export/exportAction_delete','_self');this.blur();">删除</a></li>
+<li id="delete"><a href="#" onclick="formSubmit('${ctx}/cargo/export/delete.action','_self');this.blur();">删除</a></li>
 <li id="new"><a href="#" onclick="formSubmit('/${ctx}/cargo/export/exportAction_submit','_self');this.blur();">上报</a></li>
 <li id="delete"><a href="#" onclick="formSubmit('${ctx}/cargo/export/exportAction_cancelsubmit','_self');this.blur();">取消</a></li>
 <li id="print"><a href="#" onclick="formSubmit('${ctx}/export/exportAction_print','_self');this.blur();">打印</a></li>

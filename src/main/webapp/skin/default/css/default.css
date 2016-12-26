@@ -11,10 +11,14 @@ body {
 	font-size:9pt;
 	color:#666;
 	font-family:"Lucida Grande", Verdana, Lucida, Helvetica, Arial, "微软雅黑" ,sans-serif;
-
+ /*	font-size: 12px;
+	font-family: 微软雅黑, Tahoma, Arial;
+	background: #fff;
+    border:0; 
+ /*   height:100%; /* 必须 */
+ /*	  overflow-y:auto; 必须 */	
 }
-textarea, input{ padding:2px; border:1px solid; border-color:#369e92;font-size:12px;height:25px;}
-select{ padding:2px; border:1px solid; border-color:#369e92;font-size:12px;*height:30px;}
+textarea, input, select{ padding:2px; border:1px solid; border-color:#369e92;font-size:12px;height:22px;}
 label{ cursor:hand; }
 td{ font:9pt 宋体; }
 th{ font:9pt 微软雅黑; font-weight:bord; text-align:left; }
@@ -467,14 +471,14 @@ hr {
 .center{
 	text-align: center;
 }
-
-/* .textbox-header {
+/*
+.textbox-header {
     background: url("images/box_top_left.gif") no-repeat top left;
 }
 .textbox-inner-header {
     background: url("images/box_top_right.gif") no-repeat top right;
-} */
-
+}
+*/
 
 .textbox-title {
 	font-family: 微软雅黑, Tahoma, Arial;
@@ -841,8 +845,6 @@ menu a:hover,menu a:active{
 #navMenubar #back {margin:0 3px;width:70px;height:25px;color:#00554a;padding-left:16px;padding-top:5px; letter-spacing:1.2px;background:url("../images/button/back.gif") no-repeat;}
 #navMenubar #stop {margin:0 3px;width:45px;height:21px;padding-left:4px;padding-top:4px;background:url("../images/button/iconbg.jpg") no-repeat left 1px;}
 #navMenubar #save {margin:0 3px;width:70px;height:25px;color:#00554a;padding-left:16px;padding-top:5px; letter-spacing:1.2px;background:url("../images/button/save.gif") no-repeat;}
-#navMenubar .save {margin:0 3px;width:70px;height:25px;color:#00554a;padding-left:16px;padding-top:5px; letter-spacing:1.2px;background:url("../images/button/save.gif") no-repeat;}
-
 #navMenubar #submit {margin:0 3px;width:70px;height:25px;color:#00554a;padding-left:16px;padding-top:5px; letter-spacing:1.2px;background:url("../images/button/save.gif") no-repeat;}
 #navMenubar #view {margin:0 3px;width:70px;height:25px;color:#00554a;padding-left:16px;padding-top:5px; letter-spacing:1.2px;background:url("../images/button/view.gif") no-repeat;}
 #navMenubar #accept { width:70px;height:25px;color:#00554a;padding-left:16px;padding-top:5px; letter-spacing:1.2px;background:url("../images/button/accept.gif") no-repeat;}
@@ -867,7 +869,32 @@ menu a:hover,menu a:active{
 #navMenubar #dosearch {margin:0 3px;width:95px;height:25px;color:#00554a;padding-left:18px;padding-top:5px; letter-spacing:1.2px;background:url("../images/button/dosearch.gif") no-repeat;}
 #navMenubar #save_edit {margin:0 3px;width:95px;height:25px;color:#00554a;padding-left:18px;padding-top:5px; letter-spacing:1.2px;background:url("../images/button/save_edit.gif") no-repeat;}
 #navMenubar #delete { margin:0 3px;width:70px;height:25px;color:#00554a;padding-left:16px;padding-top:5px; letter-spacing:1.2px;background:url("../images/button/del.gif") no-repeat;}
+#navMenubar #lock { width:45px;height:21px;padding-left:4px;padding-top:4px;background:url("../images/button/iconbg.jpg") no-repeat left 1px;}
+#navMenubar #run {width:45px;height:21px;padding-left:4px;padding-top:4px;background:url("../images/button/iconbg.jpg") no-repeat left 1px;}
+#navMenubar #query {width:45px;height:21px;padding-left:4px;padding-top:4px;background:url("../images/button/iconbg.jpg") no-repeat left 1px;}
+#navMenubar #twoWords { width:70px;height:25px;color:#00554a;padding-left:14px;padding-top:4px; letter-spacing:1.2px;background:url("../images/button/icon_bg.gif") repeat-x left -2px;border:1px solid #75bdb5;}
+#navMenubar #viewarchives { width: 70px;height:21px;padding-left:6px;padding-top:4px;background:url("../images/button/iconbg_70px.jpg") no-repeat left -1px; }
+#navMenubar #resume { width: 70px;height:21px;padding-left:6px;padding-top:4px;background:url("../images/button/iconbg_70px.jpg") no-repeat left 1px; }
+#navMenubar #engage { width: 70px;height:21px;padding-left:6px;padding-top:4px;background:url("../images/button/iconbg_70px.jpg") no-repeat left 1px; }
+#navMenubar #engagedismiss { width: 70px;height:21px;padding-left:6px;padding-top:4px;background:url("../images/button/iconbg_70px.jpg") no-repeat left 1px; }
+#navMenubar #export { width: 70px;height:21px;padding-left:6px;padding-top:4px;background:url("../images/button/iconbg_70px.jpg") no-repeat left 1px; }
+#navMenubar #savelock { width: 85px; height:21px;padding-left:6px;padding-top:4px;background:url("../images/button/iconbg_85px.jpg") no-repeat left 1px;}
+#navMenubar #setjob { width: 95px;height:21px;padding-left:7px;padding-top:4px;background:url("../images/button/iconbg_95px.jpg") no-repeat left 1px; }
+#navMenubar #setnowjob { width: 95px;height:21px;padding-left:7px;padding-top:4px;background:url("../images/button/iconbg_95px.jpg") no-repeat left 1px; }
+#navMenubar #setskill { width: 95px;height:21px;padding-left:7px;padding-top:4px;background:url("../images/button/iconbg_95px.jpg") no-repeat left 1px; }
+#navMenubar #setnowskill { width: 95px;height:21px;padding-left:7px;padding-top:4px;background:url("../images/button/iconbg_95px.jpg") no-repeat left 1px; }
+#navMenubar #threeWords { width:55px;height:21px;padding-left:5px;padding-top:4px;background:url("../images/button/iconbg_55px.jpg") no-repeat left 1px;}
+#navMenubar #fourWords { width:95px;height:25px;padding-left:14px;padding-top:4px; letter-spacing:1.2px;background:url("../images/button/icon_bg.gif") repeat-x left -2px;border:1px solid #75bdb5;}
+#navMenubar #fiveWords { width: 85px; height:21px;padding-left:6px;padding-top:4px;background:url("../images/button/iconbg_85px.jpg") no-repeat left 1px;}
+#navMenubar #sixWords { width: 95px;height:21px;padding-left:7px;padding-top:4px;background:url("../images/button/iconbg_95px.jpg") no-repeat left 1px; }
+#navMenubar #sevenWords { width: 110px;height:21px;padding-left:8px;padding-top:4px;background:url("../images/button/iconbg_110px.jpg") no-repeat left 1px; }
+#navMenubar #eightWords { width: 130px;height:21px;padding-left:9px;padding-top:4px;background:url("../images/button/iconbg_130px.jpg") no-repeat left 1px; }
+#navMenubar #nineWords { width: 145px;height:21px;padding-left:10px;padding-top:4px;background:url("../images/button/iconbg_145px.jpg") no-repeat left 1px; }
+#navMenubar #tenWords { width: 145px;height:21px;padding-left:10px;padding-top:4px;background:url("../images/button/iconbg_145px.jpg") no-repeat left 1px; }
 
+#navMenubar #initial { width: 145px;height:21px;padding-left:10px;padding-top:4px;background:url("../images/button/iconbg_145px.jpg") no-repeat left 1px; }
+	
+#navMenubar #elevenWords { width: 155px;height:21px;padding-left:11px;padding-top:4px;background:url("../images/button/iconbg_155px.jpg") no-repeat left 1px; }
 /*定义工具栏结束*/
 .input{border:0;}
 .input_nobox{border:0;}

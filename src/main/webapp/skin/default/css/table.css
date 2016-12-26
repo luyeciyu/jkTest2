@@ -8,21 +8,21 @@ tbody, tfoot {
 }
 
 caption {
-	font: 14.7px "å®‹ä½“";
+	font: 14.7px "ËÎÌå";
 	color: #476CA4;	
 }
 
-/* é»˜è®¤ä¸‹æ‹‰åˆ—è¡¨æ¡† */
+/* Ä¬ÈÏÏÂÀ­ÁĞ±í¿ò */
 select {
-    font: 12px "å®‹ä½“";
+    font: 12px "ËÎÌå";
     background: #FFF;
     border: 1px solid #637DDE;
 }
 
-/*é»˜è®¤æ•°æ®æ–‡æœ¬æ¡†æ§åˆ¶*/
+/*Ä¬ÈÏÊı¾İÎÄ±¾¿ò¿ØÖÆ*/
 textarea {
     width:98%;
-    font: 12px "å®‹ä½“";
+    font: 12px "ËÎÌå";
     border: 1px solid #7F9DB9;
     /*
     word-wrap:break-word;
@@ -33,7 +33,7 @@ textarea {
     width: 260px;
 }
 
-/* é€šç”¨è¡¨æ ¼ */
+/* Í¨ÓÃ±í¸ñ */
 .commonTable {
 	width:98%;
 }
@@ -48,30 +48,18 @@ textarea {
 	
 }
 
-/* è¡¨æ ¼æ ç›® */
-.columnTitle_mustbe {
-	width: 90px;
-	PADDING: 0px 5px 5px 18px;
-	BACKGROUND:url(../images/must.gif) no-repeat left 15px; 
-	FONT: 9pt å®‹ä½“; 
-	COLOR: #00544a; 
-	TEXT-ALIGN: left;
-	border-bottom:1px solid #c1e1dd;
-	padding-top:15px;
-	letter-spacing:1.5px;
-}
-
+/* ±í¸ñÀ¸Ä¿ */
 .columnTitle {
-	width: 90px;
-	PADDING: 0px 5px 5px 18px;
-	FONT: 9pt å®‹ä½“; 
+	width:120px;
+	white-space:nowrap;
+	padding: 15px;
+	margin-right:-50px;
 	COLOR: #00544a; 
 	TEXT-ALIGN: left;
 	border-bottom:1px solid #c1e1dd;
-	padding-top:15px;
-	letter-spacing:1.5px;
+	line-height:150%;
 }
-/* è¡¨æ ¼å†…å®¹ */
+/* ±í¸ñÄÚÈİ */
 .normalTD {
     text-align:left;
 	word-break:break-all;
@@ -94,10 +82,20 @@ textarea {
 	 width:100%;
 }
 
-
+.columnTitle_mustbe {
+	width: 90px;
+	PADDING: 5px 5px 5px 18px;
+	BACKGROUND:url(/skin/default/images/must.gif) no-repeat left 18px; 
+	FONT: 9pt ËÎÌå; 
+	COLOR: #00544a; 
+	TEXT-ALIGN: left;
+	border-bottom:1px solid #c1e1dd;
+	padding-top:15px;
+	letter-spacing:1.5px;
+}
 .td_title {
     PADDING: 5px 5px 5px 6px;
-	FONT: 9pt å®‹ä½“; 
+	FONT: 9pt ËÎÌå; 
 	COLOR: #00544a; 
 	TEXT-ALIGN: left;
 	border-bottom:1px solid #c1e1dd;
@@ -106,12 +104,12 @@ textarea {
 }
 
 /*
-éƒ¨é—¨æ¨¡å—ä¿®æ”¹é¡µé¢ä½¿ç”¨
+²¿ÃÅÄ£¿éĞŞ¸ÄÒ³ÃæÊ¹ÓÃ
 */
 .td_mustbe {
     PADDING: 5px 5px 5px 6px;
 	BACKGROUND:url(/skin/default/images/must.gif) no-repeat  -9px 14px; 
-	FONT: 9pt å®‹ä½“; 
+	FONT: 9pt ËÎÌå; 
 	COLOR: #00544a; 
 	TEXT-ALIGN: left;
 	border-bottom:1px solid #c1e1dd;
@@ -123,7 +121,7 @@ textarea {
 	width: 80px;
 	PADDING: 5px 5px 5px 22px;
 	BACKGROUND:url(/skin/default/images/must.gif) no-repeat left 32px; 
-	FONT: 9pt å®‹ä½“; 
+	FONT: 9pt ËÎÌå; 
 	COLOR: #00544a; 
 	TEXT-ALIGN: left;
 	border-bottom:1px solid #c1e1dd;
@@ -145,20 +143,20 @@ textarea {
 .tc_others_word{float:left;margin-top:5px;margin-left:3px;color:#009900;}
 
 
-/* é€šç”¨è¡¨æ ¼è¡Œå®šä¹‰ */
+/* Í¨ÓÃ±í¸ñĞĞ¶¨Òå */
 .commonTable tr {
     font-size: 12px;
 }
 
 
-/* é€šç”¨è¡¨æ ¼å†…å®¹ */
+/* Í¨ÓÃ±í¸ñÄÚÈİ */
 
 .tableFooter {
 	height:3px;
 	background: #f5f9fd;
 }
 
-/* é€šç”¨è¡¨æ ¼æ ‡é¢˜æ  */
+/* Í¨ÓÃ±í¸ñ±êÌâÀ¸ */
 .listTablew{
 	margin-top:5px;
 	padding:1px;

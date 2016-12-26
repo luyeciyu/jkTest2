@@ -93,24 +93,26 @@
     </div>
 </div>
  
-<div class="listTablew">
-<table class="commonTable_main" cellSpacing="1" id="resultTable">
-	<tr class="rowTitle" align="middle">
-		<td width="33">序号</td>
-		<td>货号</td>
-		<td>货物描述</td>
-		<td>厂家</td>
-		<td>数量</td>
-		<td>单位</td>
-		<td>箱数</td>
-		<td>单价</td>
-		<td>总金额</td>
-		<td>净重</td>
-		<td>毛重</td>
+<div class="eXtremeTable">
+<table class="tableRegion" width="98%"  id="resultTable">
+	<thead>
+	<tr>
+		<td class="tableHeader">序号</td>
+		<td class="tableHeader">货号</td>
+		<td class="tableHeader">货物描述</td>
+		<td class="tableHeader">厂家</td>
+		<td class="tableHeader">数量</td>
+		<td class="tableHeader">单位</td>
+		<td class="tableHeader">箱数</td>
+		<td class="tableHeader">单价</td>
+		<td class="tableHeader">总金额</td>
+		<td class="tableHeader">净重</td>
+		<td class="tableHeader">毛重</td>
 	</tr>
-	
+	</thead>
+	<tbody class="tableBody" >
 	<c:forEach var="ep" items="${obj.exportProducts}" varStatus="status">
-		<tr height="30">
+		<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'">
 			<td align="center">${status.index+1}</td>
 			<td>${ep.productNo}</td>
 			<td width="400">${ep.productDesc}</td>
@@ -125,23 +127,25 @@
 		</tr>
 		
 		<c:forEach var="ext" items="${ep.extEproducts}" varStatus="status">
-		<tr height="30">
-			<td align="center"></td>
-			<td><font color="blue">附件${status.index+1}: </font>${ext.productNo}</td>
+		<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'">
+			<td><font color="blue">附件：${status.index+1}</font></td>
+			<td>${ext.productNo}</td>
 			<td>${ext.productDesc}</td>
 			<td>${ext.factory.factoryName}</td>
 			<td>${ext.cnumber}</td>
 			<td>${ext.packingUnit}</td>
-			<td></td>
+			<td>${ep.boxNum}</td>
 			<td>${ext.price}</td>
 			<td>${ext.amount}</td>
+			<td>${ep.grossWeight}</td>
+			<td>${ep.netWeight}</td>
 		</tr>
 		
 		
 		</c:forEach>
 		
 	</c:forEach>
-	
+	</tbody>
 	<%-- <s:iterator value="%{#root.exportProduct}" var="cp" status="line">
 		<tr height="30">
 			<td align="center"><s:property value="#line.index+1"/></td>

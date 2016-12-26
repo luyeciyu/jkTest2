@@ -47,4 +47,13 @@ public class ExportController {
 		model.addAttribute("obj", exportVO);
 		return "/cargo/export/jExportView.jsp";
 	}
+	
+	@RequestMapping("/delete.action")
+	public String delete(String id, Model model){
+		System.out.println(id);
+		String[] ids = UtilFuns.splitStr(id, ",");
+		System.out.println(ids);
+		exportService.delete(ids);
+		return "redirect:/cargo/export/list.action";
+	}
 }

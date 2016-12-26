@@ -11,7 +11,7 @@
     width: 97%;
 }
 .modelTitle {
-	BACKGROUND: url("../images/title/title_bg.gif");
+	BACKGROUND: url("/skin/default/images/title/title_bg.gif");
 	background-repeat:repeat-x;
 	FONT: bold 10.5pt 微软雅黑, 宋体;
 	COLOR: #00554a;

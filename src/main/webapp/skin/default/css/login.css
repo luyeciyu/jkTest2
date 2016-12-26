@@ -1,7 +1,5 @@
-body{
-	background: url(../images/login/bg.png) no-repeat 50%; 
-	margin:0px; padding:0px; font-size:12px; color:#FFFFFF; text-align:center; 
-}
+/* 全局样式 */
+body{background:#00716B url(../images/login/l_bg.png) no-repeat 50% ; margin:0px; padding:0px; font-size:12px; color:#FFFFFF; text-align:center; }
 #warpbox{height:500px;  width:630px; margin:0 auto; position:relative;}
 
 a:link,a:visited, a:active{ color:#bee7e5; text-decoration:none;}
@@ -18,12 +16,9 @@ a:hover {color:#FED03F; text-decoration:underline;}
 
 .dl{width:235px; float:right; padding-top:18px;}
 .dl input{ width:width:96px; height:45px;}
+.dl_img{width:96px; height:45px; padding-top:18px; background:url(../images/login/dl_a.jpg) no-repeat; border:0px; cursor:pointer;} 
 
-.loginImgOut {width:96px; height:45px; padding-top:18px; background:url(../images/login/loginImgOut.jpg) no-repeat; border:0px; cursor:pointer;}
-.loginImgOver{width:96px; height:45px; padding-top:18px; background:url(../images/login/loginImgOver.jpg) no-repeat; border:0px; cursor:pointer;}
-
-.resetImgOut {width:96px; height:45px; padding-top:18px; background:url(../images/login/resetImgOut.jpg) no-repeat; border:0px; cursor:pointer;} 
-.resetImgOver{width:96px; height:45px; padding-top:18px; background:url(../images/login/resetImgOver.jpg) no-repeat; border:0px; cursor:pointer;} 
+.reset_img{width:96px; height:45px; padding-top:18px; background:url(../images/login/reset_a.jpg) no-repeat; border:0px; cursor:pointer;} 
 
 .bqxx{height:90px; text-align:center; margin-top:50px; color:#bee7e5; line-height:22px; margin-left:-40px; }
 

@@ -109,8 +109,8 @@
 	
 	<delete id="deleteByExportId" parameterType="String">
 		delete from export_product_c
-		where exprot_id in
-		<foreach collection="ids" item="id" open="(" close=")" separator=",">
+		where export_id in
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
 			#{id}
 		</foreach>
 	</delete>

@@ -152,7 +152,7 @@
 	<delete id="deleteByExportProductId" parameterType="String">
 		delete from ext_eproduct_c
 		where export_product_id in 
-		<foreach collection="ids" item="id" open="(" close=")" separator=",">
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
 			#{id}
 		</foreach>
 	</delete>
@@ -164,7 +164,7 @@
 			select export_product_id
 			from export_product_c
 			where export_id in 
-			<foreach collection="ids" item="id" open="(" close=")" separator=",">
+			<foreach collection="array" item="id" open="(" close=")" separator=",">
 				#{id}
 			</foreach>
 		)

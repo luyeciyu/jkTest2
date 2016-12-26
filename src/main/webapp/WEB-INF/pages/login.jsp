@@ -22,7 +22,7 @@
 					<input type="text" value="${requestScope.user.name}" name="name" id="name"
 				 		onFocus="this.select();"
 				 		autocomplete="off" title="请您输入用户名"/>
-					 <!-- <div id="ts" style="z-index:1;"></div> -->
+					 	<div id="ts" style="z-index:1;"></div>
 				</div>
 			    <div class="zc_line">密　码：
 					<input type="password" value="${requestScope.user.password}" name="password" id="password"
@@ -32,13 +32,13 @@
 				</div>
 		  </div>
 			<div class="dl">
-				<input  class="loginImgOut" value="" type="button" onclick="formSubmit('${ctx}/user/login.action','_self');"
-				  onmouseover="this.className='loginImgOver'" 
-				  onmouseout="this.className='loginImgOut'"
+				<input  class="dl_img" value="" type="button" onclick="formSubmit('${ctx}/user/login.action','_self');"
+				  onmouseover="this.style.background='url(${ctx}/skin/default/images/login/dl_h.jpg) no-repeat'" 
+				  onmouseout="this.style.background='url(${ctx}/skin/default/images/login/dl_a.jpg) no-repeat'"
 				/>
-				<input class="resetImgOut" value="" type="button"   
-				  onmouseover="this.className='resetImgOver'" 
-				  onmouseout="this.className='resetImgOut'"
+				<input class="reset_img" value="" type="button"   
+				  onmouseover="this.style.background='url(${ctx}/skin/default/images/login/reset_h.jpg) no-repeat'" 
+				  onmouseout="this.style.background='url(${ctx}/skin/default/images/login/reset_a.jpg) no-repeat'"
 				/>
 			</div>
 		</div>

@@ -80,20 +80,55 @@
 				<result property="orderNo" column="EXT_ORDER_NO"/>
 				
 				<association property="factory" javaType="com.swu.jk.domain.Factory">
-					<id property="id" column="FACTORY_ID"/>
-					<result property="fullName" column="FULL_NAME"/>
-					<result property="factoryName" column="FACTORY_NAME"/>
-					<result property="contacts" column="CONTACTS"/>
+					<id property="id" column="EXT_FACTORY_ID"/>
+					<result property="fullName" column="EXT_FULL_NAME"/>
+					<result property="factoryName" column="EXT_FACTORY_NAME"/>
+					<result property="contacts" column="EXT_CONTACTS"/>
 				</association>
 			</collection>
 		</collection>
 	</resultMap>
 	
 	<select id="view" parameterType="String" resultMap="exportVORM">
-		select * 
+	<!-- 	select * 
 		from export_c e 
 		left join export_product_c ep on ep.export_id=e.export_id
 		left join ext_eproduct_c ext on ep.export_product_id=ext.export_product_id
+		where e.export_id=#{id} -->
+		
+		select e.*,
+		       t.*
+		from export_c e
+		left join (
+		     select 
+		           ep.export_id,ep.export_product_id,ep.product_no,ep.product_desc,ep.cnumber,ep.packing_unit,ep.box_num,ep.price,
+		           ep.amount,ep.gross_weight,ep.net_weight,
+		           ep.factory_id,ep.factory_name,
+		                 
+		           ext.ext_eproduct_id,ext.product_no as ext_product_no,ext.product_desc as ext_product_desc,ext.cnumber as ext_cnumber,
+		           ext.packing_unit as ext_packing_unit,ext.box_num as ext_box_num,ext.price as ext_price,
+		           ext.amount as ext_amount,ext.gross_weight as ext_gross_weight,ext.net_weight ext_net_weight,
+		           ext.factory_id as ext_factory_id,ext.factory_name as ext_factory_name
+		                 
+		      from (
+		           select 
+		                ep.export_id,ep.export_product_id,ep.product_no,ep.product_desc,ep.cnumber,ep.packing_unit,ep.box_num,ep.price,
+		                ep.amount,ep.gross_weight,ep.net_weight,
+		                f.factory_id,f.factory_name
+		           from export_product_c ep
+		           left join factory_c f on f.factory_id=ep.factory_id
+		      ) ep
+		      left join (
+		           select 
+		                ext.ext_eproduct_id,ext.export_product_id,ext.product_no,ext.product_desc,ext.cnumber,ext.packing_unit,ext.box_num,ext.price,
+		                ext.amount,ext.gross_weight,ext.net_weight,
+		                f.factory_id,f.factory_name
+		           from ext_eproduct_c ext
+		           left join factory_c f on f.factory_id=ext.factory_id
+		      ) ext
+		      on ep.export_product_id=ext.export_product_id
+		) t
+		on t.export_id=e.export_id
 		where e.export_id=#{id}
 	</select>
 	
@@ -148,7 +183,7 @@
 	<delete id="delete" parameterType="String">
 		delete from export_c
 		where export_id in 
-		<foreach collection="ids" item="id" open="(" close=")" separator=",">
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
 			#{id}
 		</foreach>
 	</delete>

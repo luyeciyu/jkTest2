@@ -75,6 +75,7 @@ public class ExportServiceImpl implements ExportService{
 
 	@Override
 	public void delete(Serializable[] ids) {
+		System.out.println(ids.toString());
 		extEproductDao.deleteByExportId(ids);
 		exportProductDao.deleteByExportId(ids);
 		exportDao.delete(ids);
