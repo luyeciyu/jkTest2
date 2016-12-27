@@ -33,7 +33,7 @@
  --%>
  
  <li id="print"><a href="#" onclick="formSubmit('${ctx}/print/export/print.action','_self');this.blur();">打印</a></li>
-<li id="new"><a href="#" onclick="formSubmit('${ctx}/packinglist/packingListAction_tocreate','_self');this.blur();">装箱</a></li>
+<li id="new"><a href="#" onclick="formSubmit('${ctx}/cargo/packinglist/tocreate.action','_self');this.blur();">装箱</a></li>
 </ul>
     </div>
 </div>
@@ -55,7 +55,7 @@
 <fieldset>
 <legend><font color="000">查询条件&nbsp;</font></legend>
 <div style="width:98%;padding-top:7px;text-align:left;">
- 
+
 类型：
 <select name="f_type" style="width:130px;heigh:30px;">
 ${comboContentStr}

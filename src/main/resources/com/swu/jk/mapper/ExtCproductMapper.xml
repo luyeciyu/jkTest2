@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 
 <mapper namespace="com.swu.jk.mapper.ExtCproductMapper">
-
+	
 	<resultMap type="com.swu.jk.domain.ExtCproduct" id="extCproductRM">
 		<id property="id" column="EXT_CPRODUCT_ID"/>
 		

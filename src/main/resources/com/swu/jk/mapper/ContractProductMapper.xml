@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 
 <mapper namespace="com.swu.jk.mapper.ContractProductMapper">
+
 	<resultMap type="com.swu.jk.domain.ContractProduct" id="contractProductRM">
 		<id property="id" column="CONTRACT_PRODUCT_ID"/>
 		

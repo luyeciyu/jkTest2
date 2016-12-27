@@ -351,7 +351,27 @@ public class ExportPrintControler {
 			//cProductCell.setCellStyle(RMBStyle(wb));
 
 		}
+
 		
+		/*if(isHasRow){
+			//step 4: formula
+			sheet = wb.getSheetAt(sheetCount-1);								//选择最后一个sheet
+			
+			cProductRow = sheet.getRow((short)rowTotal);
+			cProductRow.setHeightInPoints(25);
+			
+			cProductCell   = cProductRow.getCell((short)(8));
+			cProductCell.setCellFormula(bufGrossWeight.toString());				//∑(毛重x件数)
+			//cProductCell.setCellStyle(bottomStyle(wb));
+			
+			cProductCell   = cProductRow.getCell((short)(9));
+			cProductCell.setCellFormula(bufNetWeight.toString());				//∑(净重x件数)
+			//cProductCell.setCellStyle(bottomStyle(wb));
+			
+			cProductCell   = cProductRow.getCell((short)(10));
+			cProductCell.setCellFormula(bufSize.toString());		//长x宽x高x件数 tip: cm换算m3时要除以1000000，但excel报short range错误，改为除以1000两次即可
+			//cProductCell.setCellStyle(bottomStyle(wb));
+		}*/
 		
 		FileOutputStream fOut = new FileOutputStream(outFile);
 		wb.write(fOut);

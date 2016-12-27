@@ -48,6 +48,14 @@ public class ExportController {
 		return "/cargo/export/jExportView.jsp";
 	}
 	
+	@RequestMapping("/toviewinfo.action")
+	public String viewInfo(String id, String packingListId, Model model){
+		ExportVO exportVO = exportService.view(id);
+		model.addAttribute("obj", exportVO);
+		model.addAttribute("packingListId", packingListId);
+		return "/cargo/export/jExportViewInfo.jsp";
+	}
+	
 	@RequestMapping("/delete.action")
 	public String delete(String id, Model model){
 		String[] ids = UtilFuns.splitStr(id, ",");
