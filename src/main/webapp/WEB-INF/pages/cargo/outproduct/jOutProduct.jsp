@@ -13,8 +13,8 @@
 <div id="innerMenubar">
     <div id="navMenubar">
 <ul>
-<li class="save"><a href="#" onclick="formSubmit('${ctx}/cargo/outproduct/print.action','_self');">打印</a></li>
-<li class="save"><a href="#" onclick="formSubmit('${ctx}/cargo/outproduct/printHSSF.action','_self');">模板</a></li>
+<li class="save"><a href="#" onclick="formSubmit('${ctx}/print/outproduct/print.action','_self');">打印</a></li>
+<li class="save"><a href="#" onclick="formSubmit('${ctx}/print/outproduct/printHSSF.action','_self');">模板</a></li>
 
 </ul>
     </div>

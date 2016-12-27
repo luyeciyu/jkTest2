@@ -50,10 +50,24 @@ public class ExportController {
 	
 	@RequestMapping("/delete.action")
 	public String delete(String id, Model model){
-		System.out.println(id);
 		String[] ids = UtilFuns.splitStr(id, ",");
-		System.out.println(ids);
 		exportService.delete(ids);
 		return "redirect:/cargo/export/list.action";
+	}
+	
+	@RequestMapping("/toupdate.action")
+	public String toUpdate(String id, Model model){
+		System.out.println(id);
+		Export export = exportService.get(id);
+		model.addAttribute("obj", export);
+		return "/cargo/export/jExportUpdate.jsp";
+	}
+	
+	@RequestMapping("/update.action")
+	public String update(Export export, Model model){
+		exportService.update(export);
+		
+		model.addAttribute("obj", export);
+		return "/cargo/export/jExportUpdate.jsp";
 	}
 }

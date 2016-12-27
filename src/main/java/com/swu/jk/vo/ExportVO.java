@@ -11,9 +11,9 @@ public class ExportVO {
 	
 	private String id;
 	
-	private List<ExportProduct> exportProducts;
+	//private List<ExportProduct> exportProducts;
 	//??
-	//private List<ExportProductVO> exportProducts;
+	private List<ExportProductVO> exportProducts;
 	
 	private String contractIds;
 	private String customerContract;
@@ -52,23 +52,23 @@ public class ExportVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public List<ExportProduct> getExportProducts() {
+	/*public List<ExportProduct> getExportProducts() {
 		return exportProducts;
 	}
 	public void setExportProducts(List<ExportProduct> exportProducts) {
 		this.exportProducts = exportProducts;
-	}
+	}*/
 	
 	
 	public String getContractIds() {
 		return contractIds;
 	}
-	/*public List<ExportProductVO> getExportProducts() {
+	public List<ExportProductVO> getExportProducts() {
 		return exportProducts;
 	}
 	public void setExportProducts(List<ExportProductVO> exportProducts) {
 		this.exportProducts = exportProducts;
-	}*/
+	}
 	public void setContractIds(String contractIds) {
 		this.contractIds = contractIds;
 	}

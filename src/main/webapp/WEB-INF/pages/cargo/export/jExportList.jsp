@@ -25,11 +25,14 @@
     <div id="navMenubar">
 <ul>
 <li id="view"><a href="#" onclick="formSubmit('${ctx}/cargo/export/toview.action','_self');this.blur();">查看</a></li>
-<li id="update"><a href="#" onclick="formSubmit('${ctx}/cargo/export/exportAction_toupdate','_self');this.blur();">修改</a></li>
+<li id="update"><a href="#" onclick="formSubmit('${ctx}/cargo/export/toupdate.action','_self');this.blur();">修改</a></li>
 <li id="delete"><a href="#" onclick="formSubmit('${ctx}/cargo/export/delete.action','_self');this.blur();">删除</a></li>
-<li id="new"><a href="#" onclick="formSubmit('/${ctx}/cargo/export/exportAction_submit','_self');this.blur();">上报</a></li>
+
+<%-- <li id="new"><a href="#" onclick="formSubmit('/${ctx}/cargo/export/exportAction_submit','_self');this.blur();">上报</a></li>
 <li id="delete"><a href="#" onclick="formSubmit('${ctx}/cargo/export/exportAction_cancelsubmit','_self');this.blur();">取消</a></li>
-<li id="print"><a href="#" onclick="formSubmit('${ctx}/export/exportAction_print','_self');this.blur();">打印</a></li>
+ --%>
+ 
+ <li id="print"><a href="#" onclick="formSubmit('${ctx}/print/export/print.action','_self');this.blur();">打印</a></li>
 <li id="new"><a href="#" onclick="formSubmit('${ctx}/packinglist/packingListAction_tocreate','_self');this.blur();">装箱</a></li>
 </ul>
     </div>
@@ -102,7 +105,7 @@ ${comboContentStr}
 		<td>${cp.consignee}</td>
 		<td>${cp.transportMode}</td>
 		<td>${cp.priceCondition}</td>
-		<td><fmt:formatDate value="${o.inputeDate}" pattern="yyyy-MM-dd"/></td>
+		<td><fmt:formatDate value="${cp.inputDate}" pattern="yyyy-MM-dd"/></td>
 		<td>
 			<%-- <c:if test="${o.state==1}"><font color="green">已上报</font></c:if>
 			<c:if test="${o.state==0}">草稿</c:if> --%>

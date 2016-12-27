@@ -1,4 +1,4 @@
-package com.swu.jk.web.controller;
+package com.swu.jk.web.controller.print;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,7 +28,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.swu.jk.domain.ExtCproduct;
-import com.swu.jk.service.OutProductService;
+import com.swu.jk.service.PrintService;
 import com.swu.jk.util.DownloadUtil;
 import com.swu.jk.util.UtilFuns;
 import com.swu.jk.util.file.FileUtil;
@@ -40,11 +40,11 @@ import com.swu.jk.vo.ContractProductVO;
 
 
 @Controller
-@RequestMapping(value="/cargo/outproduct")
+@RequestMapping(value="/print/outproduct")
 public class OutProductController{
 
 	@Resource
-	private OutProductService outProductService;
+	private PrintService printService;
 	
 	
 	@RequestMapping(value="/toshow.action")
@@ -54,7 +54,7 @@ public class OutProductController{
 	
 	@RequestMapping(value="/print.action")
 	public void printNotTemplate(String inputDate, HttpServletResponse response) throws IOException{
-		List<ContractProductVO> contractProductVOs = outProductService.findOutProductData(inputDate);
+		List<ContractProductVO> contractProductVOs = printService.findOutProductData(inputDate);
 		
 		
 		System.out.println("---------------------------------非模板-----------------------------------");
@@ -172,7 +172,6 @@ public class OutProductController{
 			
 			nCell = nRow.createCell(colNo++);
 			
-			System.out.println(extCpNames);
 			float height = pioUtil.getCellAutoHeight(extCpNames, 12f);  //该单元格高度
 			nRow.setHeightInPoints(height);		                        //(一行字+行之间的间隙)*行数
 			
@@ -213,7 +212,7 @@ public class OutProductController{
 	//模板开发
 	@RequestMapping("/printHSSF.action")
 	public void printHSSF(String inputDate, HttpServletRequest request, HttpServletResponse response) throws IOException{
-		List<ContractProductVO> contractProductVOs = outProductService.findOutProductData(inputDate);
+		List<ContractProductVO> contractProductVOs = printService.findOutProductData(inputDate);
 		
 		System.out.println("---------------------------------模板-----------------------------------");
 		
@@ -352,7 +351,6 @@ public class OutProductController{
 			nCell = nRow.createCell(colNo++);
 			nCell.setCellValue(cProductVO.getContract().getDeliveryPeriod());
 			nCell.setCellStyle(dateStyle);
-			System.out.println(cProductVO.getContract().getDeliveryPeriod());
 			
 			
 			nCell = nRow.createCell(colNo++);
@@ -373,8 +371,6 @@ public class OutProductController{
 		
 		DownloadUtil dUtil = new DownloadUtil();
 		dUtil.prototypeDownload(new File(rootPath + sPath + sFile), sFile, response, true);
-		
-		
 	}
 	
 	

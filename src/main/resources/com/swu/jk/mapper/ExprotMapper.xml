@@ -45,25 +45,25 @@
 	<resultMap type="com.swu.jk.vo.ExportVO" id="exportVORM" extends="exportRM">
 		<collection property="exportProducts" ofType="com.swu.jk.vo.ExportProductVO">
 			<id property="id" column="EXPORT_PRODUCT_ID"/>
-			<result property="productNo" column="PRODUCT_NO"/>
-			<result property="productImage" column="PRODUCT_IMAGE"/>
-			<result property="productDesc" column="PRODUCT_DESC"/>
-			<result property="cnumber" column="CNUMBER"/>
-			<result property="outNumber" column="OUT_NUMBER"/>
-			<result property="loadingRate" column="LOADING_RATE"/>
-			<result property="boxNum" column="BOX_NUM"/>
-			<result property="packingUnit" column="PACKING_UNIT"/>
-			<result property="price" column="PRICE"/>
-			<result property="amount" column="AMOUNT"/>
-			<result property="finished" column="FINISHED"/>
-			<result property="exts" column="EXTS"/>
-			<result property="orderNo" column="ORDER_NO"/>
+			<result property="productNo" column="EP_PRODUCT_NO"/>
+			<result property="productImage" column="EP_PRODUCT_IMAGE"/>
+			<result property="productDesc" column="EP_PRODUCT_DESC"/>
+			<result property="cnumber" column="EP_CNUMBER"/>
+			<result property="outNumber" column="EP_OUT_NUMBER"/>
+			<result property="loadingRate" column="EP_LOADING_RATE"/>
+			<result property="boxNum" column="EP_BOX_NUM"/>
+			<result property="packingUnit" column="EP_PACKING_UNIT"/>
+			<result property="price" column="EP_PRICE"/>
+			<result property="amount" column="EP_AMOUNT"/>
+			<result property="finished" column="EP_FINISHED"/>
+			<result property="exts" column="EP_EXTS"/>
+			<result property="orderNo" column="EP_ORDER_NO"/>
 		
 			<association property="factory" javaType="com.swu.jk.domain.Factory">
 				<id property="id" column="FACTORY_ID"/>
 				<result property="fullName" column="FULL_NAME"/>
 				<result property="factoryName" column="FACTORY_NAME"/>
-				<result property="contacts" column="CONTACTS"/>
+				<result property="contactor" column="CONTACTOR"/>
 			</association>
 			
 			<collection property="extEproducts" ofType="com.swu.jk.vo.ExtEproductVO">
@@ -83,7 +83,7 @@
 					<id property="id" column="EXT_FACTORY_ID"/>
 					<result property="fullName" column="EXT_FULL_NAME"/>
 					<result property="factoryName" column="EXT_FACTORY_NAME"/>
-					<result property="contacts" column="EXT_CONTACTS"/>
+					<result property="contactor" column="EXT_CONTACTOR"/>
 				</association>
 			</collection>
 		</collection>
@@ -101,20 +101,21 @@
 		from export_c e
 		left join (
 		     select 
-		           ep.export_id,ep.export_product_id,ep.product_no,ep.product_desc,ep.cnumber,ep.packing_unit,ep.box_num,ep.price,
-		           ep.amount,ep.gross_weight,ep.net_weight,
-		           ep.factory_id,ep.factory_name,
+		           ep.export_id,ep.export_product_id,ep.product_no as ep_product_no,ep.product_desc as ep_product_desc,ep.cnumber as ep_cnumber,
+		           ep.packing_unit as ep_packing_unit,ep.box_num as ep_box_num,ep.price as ep_price,
+		           ep.amount as ep_amount,ep.gross_weight as ep_gross_weight,ep.net_weight as ep_net_weight,
+		           ep.factory_id,ep.factory_name,ep.full_name,ep.contactor,
 		                 
 		           ext.ext_eproduct_id,ext.product_no as ext_product_no,ext.product_desc as ext_product_desc,ext.cnumber as ext_cnumber,
 		           ext.packing_unit as ext_packing_unit,ext.box_num as ext_box_num,ext.price as ext_price,
 		           ext.amount as ext_amount,ext.gross_weight as ext_gross_weight,ext.net_weight ext_net_weight,
-		           ext.factory_id as ext_factory_id,ext.factory_name as ext_factory_name
+		           ext.factory_id as ext_factory_id,ext.factory_name as ext_factory_name,ext.full_name as ext_full_name,ext.contactor as etx_contactor
 		                 
 		      from (
 		           select 
 		                ep.export_id,ep.export_product_id,ep.product_no,ep.product_desc,ep.cnumber,ep.packing_unit,ep.box_num,ep.price,
 		                ep.amount,ep.gross_weight,ep.net_weight,
-		                f.factory_id,f.factory_name
+		                f.factory_id,f.factory_name,f.full_name,f.contactor
 		           from export_product_c ep
 		           left join factory_c f on f.factory_id=ep.factory_id
 		      ) ep
@@ -122,7 +123,7 @@
 		           select 
 		                ext.ext_eproduct_id,ext.export_product_id,ext.product_no,ext.product_desc,ext.cnumber,ext.packing_unit,ext.box_num,ext.price,
 		                ext.amount,ext.gross_weight,ext.net_weight,
-		                f.factory_id,f.factory_name
+		                f.factory_id,f.factory_name,f.full_name,f.contactor
 		           from ext_eproduct_c ext
 		           left join factory_c f on f.factory_id=ext.factory_id
 		      ) ext
@@ -175,7 +176,14 @@
 	<update id="update" parameterType="com.swu.jk.domain.Export">
 		update export_c
 		<set>
-			<if test=""></if>
+			<if test="inputDate != null">INPUT_DATE=#{inputDate},</if>
+			<if test="lcno != null">LCNO=#{lcno},</if>
+			<if test="consignee != null">CONSIGNEE=#{consignee},</if>
+			<if test="transportMode != null">TRANSPORT_MODE=#{transportMode},</if>
+			<if test="shipmentPort != null">SHIPMENT_PORT=#{shipmentPort},</if>
+			<if test="priceCondition != null">PRICE_CONDITION=#{priceCondition},</if>
+			<if test="marks != null">MARKS=#{marks},</if>
+			<if test="remark != null">REMARK=#{remark},</if>
 		</set>
 		where export_id=#{id}
 	</update>

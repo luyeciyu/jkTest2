@@ -98,6 +98,7 @@ public class ExportServiceImpl implements ExportService{
 		//List<ContractProduct> contractProducts = new ArrayList<ContractProduct>();
 		List<ContractProduct> contractProducts = contractProductDao.findContractProductByContractId(ids);
 		
+		
 		Export export = new Export();           // 报运单
 		export.setId(UUID.randomUUID().toString());
 		
@@ -151,6 +152,8 @@ public class ExportServiceImpl implements ExportService{
 				//合同货物的走货状态
 				if(contractProduct.getOutNumber() > 0){
 					//如果出过货，则界面显示剩余的货
+					
+					//System.out.println(contractProduct.getCnumber());
 					exportProduct.setCnumber(contractProduct.getCnumber() - contractProduct.getOutNumber());
 					if(contractProduct.getLoadingRate() != null && contractProduct.getCnumber() != null){
 						_rate = Integer.parseInt(contractProduct.getLoadingRate().substring(contractProduct.getLoadingRate().indexOf("/")+1));
@@ -160,7 +163,7 @@ public class ExportServiceImpl implements ExportService{
 					exportProduct.setCnumber(contractProduct.getCnumber());
 					exportProduct.setBoxNum(contractProduct.getBoxNum());
 				}
-				
+				//System.out.println(exportProduct.getCnumber());
 				//????
 				contractProduct.setOutNumber(contractProduct.getCnumber());
 				contractProduct.setFinished(true);	//默认全部出货
@@ -172,6 +175,7 @@ public class ExportServiceImpl implements ExportService{
 				exportProduct.setSizeWidth(contractProduct.getSizeWidth());
 				exportProduct.setSizeHeight(contractProduct.getSizeHeight());
 				exportProduct.setExPrice(contractProduct.getExPrice());
+				exportProduct.setPrice(contractProduct.getPrice());
 				exportProduct.setTax(contractProduct.getPrice());		//收购单价.含税=合同单价
 				exportProduct.setAmount(contractProduct.getAmount());
 				

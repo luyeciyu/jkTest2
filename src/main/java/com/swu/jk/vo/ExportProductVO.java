@@ -16,7 +16,8 @@ public class ExportProductVO {
 	//private String factoryId;
 	private Factory factory;
 	
-	private List<ExtEproduct> extEproducts;
+	//private List<ExtEproduct> extEproducts;
+	private List<ExtEproductVO> extEproducts;
 	
 	private String contractProductId;
 	private String contractId;
@@ -249,18 +250,18 @@ public class ExportProductVO {
 	public void setFactory(Factory factory) {
 		this.factory = factory;
 	}
-	public List<ExtEproduct> getExtEproducts() {
+	/*public List<ExtEproduct> getExtEproducts() {
 		return extEproducts;
 	}
 	public void setExtEproducts(List<ExtEproduct> extEproducts) {
 		this.extEproducts = extEproducts;
-	}
-	/*public List<ExtEproductVO> getExtEproducts() {
+	}*/
+	public List<ExtEproductVO> getExtEproducts() {
 		return extEproducts;
 	}
 	public void setExtEproducts(List<ExtEproductVO> extEproducts) {
 		this.extEproducts = extEproducts;
-	}*/
+	}
 	
 	
 	
