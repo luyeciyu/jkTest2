@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.swu.jk.dao.ExportDao;
 import com.swu.jk.dao.PackingListDao;
+import com.swu.jk.dao.ShippingOrderDao;
 import com.swu.jk.domain.Export;
 import com.swu.jk.domain.PackingList;
 import com.swu.jk.pagination.Page;
@@ -24,6 +25,8 @@ public class PackingListServiceImpl implements PackingListService{
 
 	@Resource
 	private PackingListDao packingListDao;
+	@Resource
+	private ShippingOrderDao shippingOrderDao;
 	@Resource
 	private ExportDao exportDao;
 	
@@ -57,6 +60,7 @@ public class PackingListServiceImpl implements PackingListService{
 
 	@Override
 	public void deleteById(Serializable id) {
+		//级联删除   未实现
 //		packingListDao.deleteById(id);
 		
 	}
@@ -65,6 +69,8 @@ public class PackingListServiceImpl implements PackingListService{
 	public void delete(Serializable[] ids) {
 		
 		//级联删除   未实现
+		//删除后是否更改报运单的状态，或删除时有条件
+		shippingOrderDao.delete(ids); //shipperOrer的ID与packingList的ID相同
 		packingListDao.delete(ids);
 	}
 

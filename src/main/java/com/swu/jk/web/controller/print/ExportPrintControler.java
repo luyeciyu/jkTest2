@@ -39,7 +39,7 @@ import com.swu.jk.vo.ExportVO;
 import com.swu.jk.vo.ExtEproductVO;
 
 @Controller
-@RequestMapping("/print/export/")
+@RequestMapping("/print/export")
 public class ExportPrintControler {
 
 	@Resource

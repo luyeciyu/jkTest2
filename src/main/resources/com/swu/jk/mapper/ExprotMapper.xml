@@ -219,4 +219,14 @@
 		from export_c e
 	</select>
 	
+	
+	<update id="updateState" parameterType="String">
+		UPDATE export_c
+		SET state=3
+		WHERE export_id in
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</update>
+	
 </mapper>

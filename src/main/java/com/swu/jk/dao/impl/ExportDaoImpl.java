@@ -1,5 +1,6 @@
 package com.swu.jk.dao.impl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -18,5 +19,10 @@ public class ExportDaoImpl extends BaseDaoImpl<Export> implements ExportDao{
 	public ExportVO view(String id) {
 		ExportVO exportVO = super.getSqlSession().selectOne(super.getNs() + ".view", id);
 		return exportVO;
+	}
+
+	@Override
+	public void updateState(Serializable[] ids) {
+		super.getSqlSession().update(super.getNs() + ".updateState", ids);
 	}
 }

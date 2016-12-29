@@ -250,4 +250,9 @@ public class ExportServiceImpl implements ExportService{
 		
 	}
 
+//	@Override
+//	public void updateState(Serializable[] ids) {
+//		exportDao.updateState(ids);
+//	}
+
 }

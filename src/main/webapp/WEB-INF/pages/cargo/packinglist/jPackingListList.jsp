@@ -22,9 +22,9 @@
 <li id="view"><a href="#" onclick="formSubmit('${ctx}/cargo/packinglist/toview.action','_self');this.blur();">查看</a></li>
 <li id="update"><a href="#" onclick="formSubmit('${ctx}/cargo/packinglist/toupdate.action','_self');this.blur();">修改</a></li>
 <li id="delete"><a href="#" onclick="formSubmit('${ctx}/cargo/packinglist/delete.action','_self');this.blur();">删除</a></li>
-<li id="print"><a href="#" onclick="formSubmit('${ctx}/cargo/packinglist/print.action','_self');this.blur();">打印</a></li>
-
-<li id="new"><a href="#" onclick="formSubmit('/shippingorder/shippingOrderAction_toedit','_self');this.blur();">委托</a></li>
+<%-- <li id="print"><a href="#" onclick="formSubmit('${ctx}/cargo/packinglist/print.action','_self');this.blur();">打印</a></li>
+ --%>
+<li id="new"><a href="#" onclick="formSubmit('${ctx}/cargo/shippingorder/toedit.action','_self');this.blur();">委托</a></li>
 <li id="new"><a href="#" onclick="formSubmit('/invoice/invoiceAction_toedit','_self');this.blur();">发票</a></li>
 <li id="stat"><a href="#" onclick="formSubmit('/finance/financeAction_toedit','_self');this.blur();">财务</a></li>
 </ul>

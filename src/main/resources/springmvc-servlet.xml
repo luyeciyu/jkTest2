@@ -38,5 +38,12 @@
 	<mvc:annotation-driven conversion-service="formatService"/>
 	
 	
+	<!-- <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
+
+	    <property name="defaultErrorView" value="/error.jsp"></property>  
+	    <property name="exceptionAttribute" value="ex"></property>  
+	</bean> -->
+	
+	
 	
 </beans>

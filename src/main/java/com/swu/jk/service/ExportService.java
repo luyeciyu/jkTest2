@@ -18,4 +18,6 @@ public interface ExportService {
 	public void insert(Export export);
 	public ExportVO view(String id);
 	public void saveContractToExport(String[] ids);   
+	
+	//public void updateState(Serializable[] ids);
 }

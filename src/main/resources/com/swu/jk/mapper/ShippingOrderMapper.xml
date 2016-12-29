@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.swu.jk.mapper.ShippingOrderMapper">
+	<resultMap type="com.swu.jk.domain.ShippingOrder" id="shippingOrderRM">
+		<id property="id" column="SHIPPING_ORDER_ID"/>
+		<result property="orderType" column="ORDER_TYPE"/>
+		<result property="shipper" column="SHIPPER"/>
+		<result property="consignee" column="CONSIGNEE"/>
+		<result property="notifyParty" column="NOTIFY_PARTY"/>
+		<result property="lcno" column="LC_NO"/>
+		<result property="portOfLoading" column="PORT_OF_LOADING"/>
+		<result property="portOfTrans" column="PORT_OF_TRANS"/>
+		<result property="PORT_OF_DISCHARGE" column="portOfDischarge"/>
+		<result property="loadingDate" column="LOADING_DATE"/>
+		<result property="limitDate" column="LIMIT_DATE"/>
+		<result property="isBatch" column="IS_BATCH"/>
+		<result property="isTrans" column="IS_TRANS"/>
+		<result property="COPY_NUM" column="copyNum"/>
+		<result property="cnote" column="CNOTE"/>
+		<result property="specialCondition" column="SPECIAL_CONDITION"/>
+		<result property="freight" column="FREIGHT"/>
+		<result property="checkBy" column="CHECK_BY"/>
+		<result property="createBy" column="CREATE_BY"/>
+		<result property="createDept" column="CREATE_DEPT"/>
+		<result property="createTime" column="CREATE_TIME"/>
+	</resultMap>
+	
+	
+	<insert id="insert" parameterType="com.swu.jk.domain.ShippingOrder">
+		INSERT INTO shipping_order_c
+			(shipping_order_id, order_type, shipper, consignee, notify_party, lc_no, port_of_loading, port_of_trans,
+			port_of_discharge, loading_date, limit_date, is_batch, is_trans, copy_num, cnote, special_condition,
+			freight,check_by, create_by, create_dept, create_time)
+		VALUES
+			(
+			#{id},
+			#{orderType, jdbcType=CHAR},
+			#{shipper, jdbcType=VARCHAR},
+			#{consignee, jdbcType=VARCHAR},
+			#{notifyParty, jdbcType=VARCHAR},
+			#{lcno, jdbcType=VARCHAR},
+			#{portOfLoading, jdbcType=VARCHAR},
+			#{portOfTrans, jdbcType=VARCHAR},
+			#{portOfDischarge, jdbcType=VARCHAR},
+			#{loadingDate, jdbcType=TIMESTAMP},
+			#{limitDate, jdbcType=TIMESTAMP},
+			#{isBatch, jdbcType=CHAR},
+			#{isTrans, jdbcType=CHAR},
+			#{copyNum, jdbcType=VARCHAR},
+			#{cnote, jdbcType=VARCHAR},
+			#{specialCondition, jdbcType=VARCHAR},
+			#{freight, jdbcType=VARCHAR},
+			#{checkBy, jdbcType=VARCHAR},
+			#{createBy, jdbcType=VARCHAR},
+			#{createDept, jdbcType=VARCHAR},
+			#{createTime, jdbcType=TIMESTAMP}
+			)
+	</insert>
+	
+	<update id="update" parameterType="com.swu.jk.domain.ShippingOrder">
+	
+		UPDATE shipping_order_c
+		<set>
+			<if test="orderType != null">order_type=#{orderType},</if>
+			<if test="shipper != null">shipper=#{shipper},</if>
+			<if test="consignee != null">consignee=#{consignee},</if>
+			<if test="notifyParty != null">notify_party=#{notifyParty},</if>
+			<if test="lcno != null">lc_no=#{lcno},</if>
+			<if test="portOfLoading != null">port_of_loading=#{portOfLoading},</if>
+			<if test="portOfTrans != null">port_of_trans=#{portOfTrans},</if>
+			<if test="portOfDischarge != null">port_of_discharge=#{portOfDischarge},</if>
+			<if test="loadingDate != null">loading_date=#{loadingDate},</if>
+			<if test="limitDate != null">limit_date=#{limitDate},</if>
+			<if test="isBatch != null">is_batch=#{isBatch},</if>
+			<if test="isTrans != null">is_trans=#{isTrans},</if>
+			<if test="copyNum != null">copy_num=#{copyNum},</if>
+			<if test="specialCondition != null">special_condition=#{specialCondition},</if>
+			<if test="freight != null">freight=#{freight},</if>
+			<if test="checkBy != null">check_by=#{checkBy},</if>
+			
+		</set>
+		WHERE  shipping_order_id=#{id}
+	</update>
+	
+	<select id="get" parameterType="String" resultMap="shippingOrderRM">
+		SELECT *
+		FROM shipping_order_c
+		WHERE shipping_order_id=#{id}
+	</select>
+	
+	<select id="find" parameterType="Map" resultMap="shippingOrderRM">
+		SELECT *
+		FROM shipping_order_c
+	</select>
+	
+	<delete id="delete" parameterType="String">
+		DELETE FROM shipping_order_c
+		WHERE shipping_order_id in
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<delete id="deleteById" parameterType="String">
+		DELETE FROM shipping_order_c
+		WHERE shipping_order_id=#{id}
+	</delete>
+	
+	
+</mapper>
