@@ -1,5 +1,5 @@
-/* 全局样式 */
-body{background:#00716B url(../images/login/l_bg.png) no-repeat 50% ; margin:0px; padding:0px; font-size:12px; color:#FFFFFF; text-align:center; }
+/* 脠芦戮脰脩霉脢陆 */
+/*body{background:#00716B url(../images/login/l_bg.png) no-repeat 50% ; margin:0px; padding:0px; font-size:12px; color:#FFFFFF; text-align:center; }
 #warpbox{height:500px;  width:630px; margin:0 auto; position:relative;}
 
 a:link,a:visited, a:active{ color:#bee7e5; text-decoration:none;}
@@ -47,6 +47,25 @@ a:hover {color:#FED03F; text-decoration:underline;}
 	height:25px;
 	line-height:25px;
 	color:#000000;
+}*/
+	
+/* body{
+	background:#00716B url(../images/login/l_bg.png) no-repeat ; 
+	margin:0px; padding:0px; font-size:12px; color:#FFFFFF; text-align:center;
+} */
+/*#warpbox{height:500px;  width:630px; margin:0 auto; position:relative;}*/
+
+.login{
+	margin: 100px auto;
+	width: 500px;
+
 }
-	
-	
+
+/*鏂囧瓧灞呬腑*/
+button{
+	line-height: 10px!important;
+}
+.errorInfo{
+	color: red;
+	line-height: 32px!important;
+}

@@ -1,4 +1,4 @@
-#userInfo {
+/*#userInfo {
 	height:35px;
 	position: absolute;
 	right:20px;
@@ -80,4 +80,16 @@
 	z-index: 99999;
 	float:left;
 	padding:2px 5px 0px 5px;
+}*/
+
+.headerBg{
+	background: url(../images/title/title_bgs.jpg) no-repeat right top;
+	height:91px;
 }
+.top_logo{
+	background: url(../images/login/logo.png) no-repeat;
+	height:91px;
+	/* white-space: nowrap; */
+}
+
+

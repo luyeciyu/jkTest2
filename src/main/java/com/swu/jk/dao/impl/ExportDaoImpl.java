@@ -2,6 +2,7 @@ package com.swu.jk.dao.impl;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -21,8 +22,14 @@ public class ExportDaoImpl extends BaseDaoImpl<Export> implements ExportDao{
 		return exportVO;
 	}
 
-	@Override
+/*	@Override
 	public void updateState(Serializable[] ids) {
 		super.getSqlSession().update(super.getNs() + ".updateState", ids);
+	}*/
+
+	@Override
+	public void updateState(Map param) {
+		super.getSqlSession().update(super.getNs() + ".updateState", param);
+		
 	}
 }

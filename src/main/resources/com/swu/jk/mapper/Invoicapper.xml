@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.swu.jk.mapper.Invoicapper">
+	<resultMap type="com.swu.jk.domain.Invoice" id="invoiceRM">
+		<id property="id" column="invoice_id" />
+		<result property="scNo" column="sc_no"/>
+		<result property="blNo" column="bl_no"/>
+		<result property="tradeTerms" column="trade_terms"/>
+		<result property="createBy" column="create_by"/>
+		<result property="createDept" column="create_dept"/>
+		<result property="createTime" column="create_time"/>
+	</resultMap>
+	
+	
+	<insert id="insert" parameterType="com.swu.jk.domain.Invoice">
+		INSERT INTO invoice_c
+			(invoice_id, sc_no, bl_no, trade_terms, create_by, create_dept, create_time)
+		VALUES
+		(
+			#{id},
+			#{scNo, jdbcType=VARCHAR},
+			#{blNo, jdbcType=VARCHAR},
+			#{tradeTerms, jdbcType=VARCHAR},
+			#{createBy, jdbcType=VARCHAR},
+			#{createDept, jdbcType=VARCHAR},
+			#{createTime, jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+	<update id="update" parameterType="com.swu.jk.domain.ShippingOrder">
+	
+		UPDATE invoice_c
+		<set>
+			<if test="scNo != null">sc_no=#{scNo},</if>
+			<if test="blNo != null">bl_no=#{blNo},</if>
+			<if test="tradeTerms != null">trade_terms=#{tradeTerms},</if>
+			<if test="createBy != null">create_by=#{createBy},</if>
+			<if test="createDept != null">create_dept=#{createDept},</if>
+			<if test="createTime != null">create_time=#{createTime},</if>
+		</set>
+		WHERE  invoice_id=#{id}
+	</update>
+	
+	
+	<select id="get" parameterType="String" resultMap="invoiceRM">
+		SELECT *
+		FROM invoice_c
+		WHERE invoice_id=#{id}
+	</select>
+	
+	<select id="find" parameterType="Map" resultMap="invoiceRM">
+		SELECT *
+		FROM invoice_c
+	</select>
+	
+	<delete id="delete" parameterType="String">
+		DELETE FROM invoice_c
+		WHERE invoice_id in
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<delete id="deleteById" parameterType="String">
+		DELETE FROM invoice_c
+		WHERE invoice_id=#{id}
+	</delete>
+	
+	
+</mapper>

@@ -7,7 +7,7 @@
     <title></title>
 
     <!-- 调用样式表 -->
-    <link rel="stylesheet" rev="stylesheet" type="text/css" href="${ctx}/skin/default/css/title.css" media="all"/>
+    <link rel="stylesheet" rev="stylesheet" type="text/css" href="skin/default/css/title.css" media="all"/>
 	
 <script language="javascript">
 

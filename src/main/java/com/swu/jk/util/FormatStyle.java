@@ -4,7 +4,6 @@ package com.swu.jk.util;
 public class FormatStyle {
 	
 	public static void main(String[] args) {
-		// TODO: Add your code here
 		FormatStyle formatStyle = new FormatStyle();
 		System.out.println(formatStyle.fileSize("10737418240"));
 	}

@@ -25,8 +25,8 @@
 <%-- <li id="print"><a href="#" onclick="formSubmit('${ctx}/cargo/packinglist/print.action','_self');this.blur();">打印</a></li>
  --%>
 <li id="new"><a href="#" onclick="formSubmit('${ctx}/cargo/shippingorder/toedit.action','_self');this.blur();">委托</a></li>
-<li id="new"><a href="#" onclick="formSubmit('/invoice/invoiceAction_toedit','_self');this.blur();">发票</a></li>
-<li id="stat"><a href="#" onclick="formSubmit('/finance/financeAction_toedit','_self');this.blur();">财务</a></li>
+<li id="new"><a href="#" onclick="formSubmit('${ctx}/cargo/invoice/toedit.action','_self');this.blur();">发票</a></li>
+<li id="stat"><a href="#" onclick="formSubmit('${ctx}/cargo/finance/toedit.action','_self');this.blur();">财务</a></li>
 </ul>
     </div>
 </div>

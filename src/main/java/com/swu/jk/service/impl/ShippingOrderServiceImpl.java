@@ -2,6 +2,7 @@ package com.swu.jk.service.impl;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -74,7 +75,12 @@ public class ShippingOrderServiceImpl implements ShippingOrderService{
 		
 		PackingList packingList = packingListDao.get(shippingOrder.getId());
 		String[] exportIds = packingList.getExportIds().split("\\|");
-		exportDao.updateState(exportIds);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ids", exportIds);
+		map.put("state", 3);
+		
+		exportDao.updateState(map);
 		
 		/*Export export;
 		List<String> _exportIds = new ArrayList<String>();

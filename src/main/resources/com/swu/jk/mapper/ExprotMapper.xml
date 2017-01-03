@@ -220,11 +220,11 @@
 	</select>
 	
 	
-	<update id="updateState" parameterType="String">
+	<update id="updateState">
 		UPDATE export_c
-		SET state=3
+		SET state=#{state}
 		WHERE export_id in
-		<foreach collection="array" item="id" open="(" close=")" separator=",">
+		<foreach collection="ids" item="id" open="(" close=")" separator=",">
 			#{id}
 		</foreach>
 	</update>

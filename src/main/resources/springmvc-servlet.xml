@@ -26,6 +26,9 @@
 		<property name="suffix" value=""/>
 	</bean>
 	
+	<mvc:resources location="/js/" mapping="/js/**"/>
+	<mvc:resources location="/skin/default/" mapping="/skin/default/**"/>
+	<mvc:resources location="/components/" mapping="/components/**"/>
 	
 	<!-- 类型转换 -->
 	<bean name="formatService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
